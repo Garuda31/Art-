@@ -19,8 +19,12 @@
   try { works = JSON.parse(dataEl.textContent); } catch (e) { works = []; }
   if (!works.length) { if (shuffleButton) shuffleButton.hidden = true; return; }
 
-  var ROOM_W = 285.7;       // cm
-  var ROOM_H = 178.6;       // cm
+  /* De getekende kamer is 885,7 x 238,6 cm: de zichtbare kamer (0..285,7 x 0..178,6 cm)
+     met extra muur en vloer eromheen, zodat hij op elk schermformaat gevuld blijft. */
+  var ROOM_X0 = -300;       // cm
+  var ROOM_Y0 = -60;        // cm
+  var ROOM_W = 885.7;       // cm
+  var ROOM_H = 238.6;       // cm
   var CENTER_X = 175.7;     // cm: midden van de bank en de galerijwand
   var CENTER_Y = 47;        // cm van boven: lijn waarop de schilderijen "centraal" hangen
   var GAP = 8;              // cm tussen de lijsten
@@ -72,8 +76,8 @@
     frame.title = work.title;
 
     var y = CENTER_Y - work.fh / 2;
-    frame.style.left = pct(x, ROOM_W);
-    frame.style.top = pct(y, ROOM_H);
+    frame.style.left = pct(x - ROOM_X0, ROOM_W);
+    frame.style.top = pct(y - ROOM_Y0, ROOM_H);
     frame.style.width = pct(work.fw, ROOM_W);
     frame.style.height = pct(work.fh, ROOM_H);
 

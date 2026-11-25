@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2857 1786" width="2857" height="1786" preserveAspectRatio="none" role="presentation" aria-hidden="true" focusable="false">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3000 -600 8857 2386" width="8857" height="2386" preserveAspectRatio="none" role="presentation" aria-hidden="true" focusable="false">
 <defs>
   <linearGradient id="wall" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ece6db"/><stop offset="1" stop-color="#ddd6c8"/></linearGradient>
   <linearGradient id="floor" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#b9a98f"/><stop offset="1" stop-color="#a99879"/></linearGradient>
 </defs>
-<rect width="2857" height="1786" fill="url(#wall)"/>
-<rect y="1650" width="2857" height="136" fill="url(#floor)"/>
-<rect y="1570" width="2857" height="80" fill="#f4f1ea"/>
+<rect x="-3000" y="-600" width="8857" height="2250" fill="url(#wall)"/>
+<rect x="-3000" y="1650" width="8857" height="136" fill="url(#floor)"/>
+<rect x="-3000" y="1570" width="8857" height="80" fill="#f4f1ea"/>
 <rect x="757" y="1695" width="2000" height="70" fill="#e7dfcf" opacity=".9"/>
 
 <!-- bank, 180 cm breed -->
