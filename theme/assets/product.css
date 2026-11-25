@@ -98,8 +98,7 @@
 }
 .product__status--sold { color: var(--color-ink); margin-top: 8px; }
 .product__form { display: grid; gap: 12px; }
-.product__trust { margin: 14px 0 0; display: flex; flex-wrap: wrap; gap: 4px 0; color: var(--color-stone-text); }
-.product__trust li + li::before { content: '·'; margin: 0 8px; }
+.product__trust { margin: 14px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; color: var(--color-stone-text); }
 
 .product__ask { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--color-stone); }
 .product__ask-title { margin-bottom: 12px; font-family: var(--font-heading); font-size: 22px; }
