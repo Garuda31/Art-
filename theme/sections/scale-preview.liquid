@@ -1,0 +1,98 @@
+{{ 'product.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign size_text = product.metafields.artwork.size_framed.value
+  if size_text == blank
+    assign size_text = product.metafields.artwork.size_artwork.value
+  endif
+
+  assign parts = size_text | downcase | remove: 'cm' | remove: '[' | remove: ']' | replace: '×', 'x' | replace: '*', 'x' | replace: ',', '.' | split: 'x'
+  assign first_value = parts[0] | strip | times: 1.0
+  assign second_value = parts[1] | strip | times: 1.0
+
+  comment
+    Maat staat als "breedte × hoogte". Het metafield 'orientation' (staand/liggend) bepaalt zo nodig de volgorde.
+  endcomment
+  assign art_w = first_value
+  assign art_h = second_value
+  assign orientation = product.metafields.artwork.orientation.value | downcase
+  if orientation == 'staand' and art_w > art_h
+    assign art_w = second_value
+    assign art_h = first_value
+  elsif orientation == 'liggend' and art_w < art_h
+    assign art_w = second_value
+    assign art_h = first_value
+  endif
+
+  assign show_scale = false
+  if art_w > 0 and art_h > 0 and art_w <= 200 and art_h <= 150 and section.settings.show
+    assign show_scale = true
+  endif
+-%}
+
+{%- if show_scale -%}
+  {%- liquid
+    comment
+      Tekenvlak in centimeters: breedte 300, vloer op y = 190. Bank 220 cm breed, rugleuning 85 cm hoog.
+      Het werk hangt 30 cm boven de rugleuning, gecentreerd boven de bank.
+    endcomment
+    assign half_width = art_w | divided_by: 2.0
+    assign art_x = 150.0 | minus: half_width
+    assign art_bottom = 75.0
+    assign art_y = art_bottom | minus: art_h
+    assign view_top = art_y | minus: 14.0
+    if view_top > 0
+      assign view_top = 0
+    endif
+    assign view_height = 200.0 | minus: view_top
+    assign alt_text = 'product.image_alt' | t: title: product.title
+  -%}
+  <section class="scale" aria-labelledby="scale-heading-{{ section.id }}">
+    <div class="container scale__inner" data-reveal>
+      <h2 class="scale__heading" id="scale-heading-{{ section.id }}">{{ 'scale.heading' | t }}</h2>
+      <svg
+        class="scale__svg"
+        viewBox="0 {{ view_top }} 300 {{ view_height }}"
+        role="img"
+        aria-label="{{ 'scale.sofa_label' | t }}"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <line class="scale__floor" x1="0" y1="190" x2="300" y2="190"/>
+
+        {%- comment -%} Bank-silhouet {%- endcomment -%}
+        <rect class="scale__sofa" x="52" y="105" width="196" height="50" rx="8"/>
+        <rect class="scale__sofa-dark" x="40" y="130" width="24" height="44" rx="7"/>
+        <rect class="scale__sofa-dark" x="236" y="130" width="24" height="44" rx="7"/>
+        <rect class="scale__sofa-dark" x="56" y="148" width="188" height="26" rx="5"/>
+        <rect class="scale__sofa-dark" x="50" y="174" width="5" height="16"/>
+        <rect class="scale__sofa-dark" x="245" y="174" width="5" height="16"/>
+
+        {%- comment -%} Het werk op schaal {%- endcomment -%}
+        <rect class="scale__frame" x="{{ art_x }}" y="{{ art_y }}" width="{{ art_w }}" height="{{ art_h }}"/>
+        {%- if product.featured_image -%}
+          <image
+            href="https:{{ product.featured_image | image_url: width: 700 }}"
+            x="{{ art_x }}"
+            y="{{ art_y }}"
+            width="{{ art_w }}"
+            height="{{ art_h }}"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            <title>{{ alt_text }}</title>
+          </image>
+        {%- endif -%}
+      </svg>
+      <p class="scale__caption small">{{ 'scale.caption' | t: size: size_text }}</p>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Schaalindicatie",
+  "settings": [
+    { "type": "checkbox", "id": "show", "label": "Schaalindicatie tonen", "default": true }
+  ],
+  "presets": []
+}
+{% endschema %}

@@ -1,0 +1,68 @@
+<header class="site-header" data-site-header>
+  <div class="site-header__inner container">
+    <button
+      type="button"
+      class="icon-button site-header__toggle"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      data-menu-toggle
+    >
+      <span class="visually-hidden" data-label-open>{{ 'header.menu' | t }}</span>
+      <span class="visually-hidden" data-label-close hidden>{{ 'header.close_menu' | t }}</span>
+      <span data-icon-open>{% render 'icon', name: 'menu' %}</span>
+      <span data-icon-close hidden>{% render 'icon', name: 'close' %}</span>
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="{{ 'header.main_navigation' | t }}" data-site-nav>
+      <ul class="site-nav__list">
+        {%- assign menu = section.settings.menu -%}
+        {%- if menu != blank and menu.links.size > 0 -%}
+          {%- for link in menu.links -%}
+            <li>
+              <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+            </li>
+          {%- endfor -%}
+        {%- else -%}
+          <li><a href="{{ routes.all_products_url }}">{{ 'header.link_collection' | t }}</a></li>
+          <li><a href="{{ routes.root_url }}pages/over">{{ 'header.link_about' | t }}</a></li>
+          <li><a href="{{ routes.root_url }}pages/contact">{{ 'header.link_contact' | t }}</a></li>
+        {%- endif -%}
+      </ul>
+    </nav>
+
+    <a class="site-logo" href="{{ routes.root_url }}">
+      {%- if settings.logo -%}
+        {{ settings.logo | image_url: width: 640 | image_tag: width: settings.logo_width, alt: shop.name, class: 'site-logo__image', loading: 'eager' }}
+      {%- else -%}
+        <span class="site-logo__text">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    <div class="site-header__actions">
+      <a class="icon-button" href="{{ routes.search_url }}">
+        <span class="visually-hidden">{{ 'header.search' | t }}</span>
+        {% render 'icon', name: 'search' %}
+      </a>
+      <a class="icon-button site-header__cart" href="{{ routes.cart_url }}" data-cart-link>
+        <span class="visually-hidden" data-cart-label>{{ 'header.cart_count' | t: count: cart.item_count }}</span>
+        {% render 'icon', name: 'cart' %}
+        <span class="cart-count" data-cart-count aria-hidden="true"{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Hoofdmenu",
+      "default": "main-menu",
+      "info": "Zonder menu worden Collectie, Over en Contact getoond."
+    }
+  ]
+}
+{% endschema %}

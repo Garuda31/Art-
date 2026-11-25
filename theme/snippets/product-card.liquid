@@ -1,0 +1,86 @@
+{%- comment -%}
+  Kaart voor een schilderij.
+  Parameters: product (verplicht), eager (boolean, eerste rij), sizes (optioneel),
+  archive (boolean: altijd label tonen, nooit een prijs)
+  Verkocht = niet beschikbaar. Tag 'archief' = niet te koop.
+{%- endcomment -%}
+{%- liquid
+  assign is_sold = true
+  if product.available
+    assign is_sold = false
+  endif
+  assign is_archived = false
+  if product.tags contains 'archief'
+    assign is_archived = true
+  endif
+  if archive
+    assign is_archived = true
+  endif
+  assign badge = ''
+  if is_sold
+    assign badge = 'general.sold' | t
+  elsif is_archived
+    assign badge = 'general.not_for_sale' | t
+  endif
+
+  assign medium = product.metafields.artwork.medium.value
+  assign size_artwork = product.metafields.artwork.size_artwork.value
+  assign alt_text = 'product.image_alt' | t: title: product.title
+  assign loading = 'lazy'
+  if eager
+    assign loading = 'eager'
+  endif
+  assign card_sizes = sizes | default: '(min-width: 1000px) 30vw, (min-width: 640px) 45vw, 50vw'
+  assign hover_image = product.images[1]
+-%}
+
+<article class="product-card{% if is_sold %} is-sold{% endif %}">
+  <div class="product-card__media">
+    {%- if product.featured_image -%}
+      {{
+        product.featured_image
+        | image_url: width: 900
+        | image_tag:
+          widths: '300, 450, 600, 900',
+          sizes: card_sizes,
+          loading: loading,
+          alt: alt_text,
+          class: 'product-card__image'
+      }}
+      {%- if hover_image -%}
+        {{
+          hover_image
+          | image_url: width: 900
+          | image_tag:
+            widths: '300, 450, 600, 900',
+            sizes: card_sizes,
+            loading: 'lazy',
+            alt: '',
+            class: 'product-card__image product-card__image--hover'
+        }}
+      {%- endif -%}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'product-card__placeholder' }}
+    {%- endif -%}
+
+    {%- if badge != blank -%}
+      <span class="product-card__badge">{{ badge }}</span>
+    {%- endif -%}
+  </div>
+
+  <div class="product-card__info">
+    <h3 class="product-card__title">
+      <a class="product-card__link" href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    {%- if medium != blank or size_artwork != blank -%}
+      <p class="product-card__meta small">
+        {{- medium -}}
+        {%- if medium != blank and size_artwork != blank %} · {% endif -%}
+        {{- size_artwork -}}
+      </p>
+    {%- endif -%}
+    {%- unless is_sold or is_archived -%}
+      <p class="product-card__price">{% render 'price', product: product %}</p>
+    {%- endunless -%}
+  </div>
+</article>

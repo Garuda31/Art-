@@ -1,0 +1,47 @@
+{{ 'collection.css' | asset_url | stylesheet_tag }}
+{{ 'product.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign source = section.settings.collection
+  if source == blank
+    for candidate in product.collections
+      if candidate.handle != 'all' and candidate.handle != 'archief' and source == blank
+        assign source = candidate
+      endif
+    endfor
+  endif
+-%}
+
+{%- if source != blank -%}
+  <section class="related">
+    <div class="container">
+      <h2 class="related__heading" data-reveal>{{ 'related.heading' | t }}</h2>
+      <ul class="product-grid" role="list">
+        {%- assign shown = 0 -%}
+        {%- for item in source.products limit: 8 -%}
+          {%- if item.id != product.id and shown < 4 -%}
+            {%- assign shown = shown | plus: 1 -%}
+            <li class="product-grid__item" data-reveal>
+              {% render 'product-card', product: item, sizes: '(min-width: 1000px) 22vw, 50vw' %}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Meer uit deze collectie",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collectie",
+      "info": "Leeg laten om de collectie van het huidige werk te gebruiken."
+    }
+  ],
+  "presets": []
+}
+{% endschema %}

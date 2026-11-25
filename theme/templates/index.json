@@ -1,0 +1,127 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Kleur als taal",
+        "text": "Abstracte schilderijen in acryl, met de hand gemaakt. Elk werk is uniek.",
+        "button_label": "Bekijk de collectie"
+      }
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Uitgelicht",
+        "count": 6
+      }
+    },
+    "about": {
+      "type": "about-maker",
+      "settings": {
+        "heading": "Elk werk begint met een kleur",
+        "text": "<p>Ik begin met een kleur die me die dag raakt, en laat het werk zich daarna vanzelf ontwikkelen — laag over laag, lijn na lijn. Elk schilderij is uniek, met de hand gesigneerd en geleverd met een certificaat van echtheid. Ik vind het mooi om te weten waar mijn werk terechtkomt.</p>",
+        "link_label": "Lees het verhaal"
+      }
+    },
+    "trust": {
+      "type": "trust-bar",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "unique",
+            "text": "Uniek origineel"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "truck",
+            "text": "Gratis verzekerde verzending (NL)"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "return",
+            "text": "14 dagen bedenktijd"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "certificate",
+            "text": "Certificaat van echtheid"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "label": "Onze beloftes"
+      }
+    },
+    "quote": {
+      "type": "quote",
+      "settings": {
+        "text": "Kleur en levendigheid brengen in huizen, met kunst die met de hand en met aandacht is gemaakt.",
+        "author": "Sutarwaty"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {}
+    },
+    "instagram": {
+      "type": "instagram-strip",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_5": {
+          "type": "image",
+          "settings": {}
+        },
+        "image_6": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "featured",
+    "about",
+    "trust",
+    "quote",
+    "newsletter",
+    "instagram"
+  ]
+}

@@ -1,0 +1,55 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign link = section.settings.link
+  if link == blank
+    assign link = routes.root_url | append: 'pages/over'
+  endif
+-%}
+
+<section class="section about-maker">
+  <div class="container about-maker__grid">
+    <div class="about-maker__media" data-reveal>
+      {%- if section.settings.image -%}
+        {{
+          section.settings.image
+          | image_url: width: 1200
+          | image_tag:
+            widths: '500, 700, 900, 1200',
+            sizes: '(min-width: 900px) 45vw, 100vw',
+            loading: 'lazy',
+            alt: section.settings.image_alt,
+            class: 'about-maker__image'
+        }}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 'about-maker__placeholder' }}
+      {%- endif -%}
+    </div>
+    <div class="about-maker__text" data-reveal>
+      <p class="eyebrow">{{ 'home.about_eyebrow' | t }}</p>
+      {%- if section.settings.heading != blank -%}
+        <h2>{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      <div class="rte">{{ section.settings.text }}</div>
+      <a class="link-arrow" href="{{ link }}">
+        {{ section.settings.link_label }}
+        {% render 'icon', name: 'arrow-right' %}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Over de maker",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Atelierfoto" },
+    { "type": "text", "id": "image_alt", "label": "Alt-tekst afbeelding" },
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Elk werk begint met een kleur" },
+    { "type": "richtext", "id": "text", "label": "Tekst (3 zinnen)" },
+    { "type": "text", "id": "link_label", "label": "Linktekst", "default": "Lees het verhaal" },
+    { "type": "url", "id": "link", "label": "Link", "info": "Leeg laten voor de pagina 'Over'." }
+  ],
+  "presets": [{ "name": "Over de maker" }]
+}
+{% endschema %}

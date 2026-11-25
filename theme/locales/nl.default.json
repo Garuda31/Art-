@@ -1,0 +1,152 @@
+{
+  "general": {
+    "skip_to_content": "Ga naar de inhoud",
+    "close": "Sluiten",
+    "page": "Pagina {{ page }}",
+    "sold": "Verkocht",
+    "not_for_sale": "Niet te koop"
+  },
+  "announcement": {
+    "text": "Gratis verzekerde verzending binnen Nederland"
+  },
+  "header": {
+    "menu": "Menu",
+    "close_menu": "Menu sluiten",
+    "main_navigation": "Hoofdmenu",
+    "search": "Zoeken",
+    "cart": "Winkelmand",
+    "cart_count": {
+      "one": "Winkelmand, {{ count }} werk",
+      "other": "Winkelmand, {{ count }} werken"
+    },
+    "link_collection": "Collectie",
+    "link_about": "Over",
+    "link_contact": "Contact"
+  },
+  "footer": {
+    "tagline": "Kleur als taal",
+    "shop_heading": "Winkel",
+    "info_heading": "Info",
+    "newsletter_heading": "Zie nieuwe werken als eerste",
+    "newsletter_text": "Een paar keer per jaar verschijnt een nieuwe kleine collectie. Inschrijvers zien hem een dag eerder.",
+    "link_collection": "Collectie",
+    "link_archive": "Archief",
+    "link_about": "Over Sutarwaty",
+    "link_faq": "Veelgestelde vragen",
+    "link_shipping": "Verzending & retour",
+    "link_contact": "Contact",
+    "copyright": "© {{ year }} {{ shop }}",
+    "kvk": "KVK {{ number }}",
+    "instagram": "Instagram",
+    "payment_methods": "Betaalmethoden"
+  },
+  "newsletter": {
+    "email_label": "E-mailadres",
+    "email_placeholder": "Je e-mailadres",
+    "submit": "Inschrijven",
+    "success": "Bedankt, je staat op de lijst.",
+    "privacy_note": "Je kunt je op elk moment uitschrijven."
+  },
+  "collection": {
+    "filter": "Filteren",
+    "sort_by": "Sorteren",
+    "apply": "Toepassen",
+    "clear_all": "Alles wissen",
+    "active_filters": "Actieve filters",
+    "remove_filter": "Filter verwijderen: {{ label }}",
+    "results_count": {
+      "one": "{{ count }} werk",
+      "other": "{{ count }} werken"
+    },
+    "no_results": "Geen werken gevonden met deze filters.",
+    "price_from": "Van",
+    "price_to": "Tot",
+    "products_label": "Werken",
+    "filters_label": "Filters en sortering"
+  },
+  "pagination": {
+    "label": "Paginering",
+    "previous": "Vorige",
+    "next": "Volgende",
+    "page": "Pagina {{ number }}"
+  },
+  "product": {
+    "image_alt": "{{ title }} — acryl schilderij van Sutarwaty",
+    "year": "Jaar",
+    "medium": "Techniek",
+    "size_artwork": "Maat werk",
+    "size_framed": "Maat met lijst",
+    "frame": "Lijst",
+    "details_label": "Gegevens van het werk",
+    "unique_available": "Uniek origineel — 1 beschikbaar",
+    "sold": "Verkocht",
+    "not_for_sale": "Niet te koop",
+    "add_to_cart": "In winkelmand",
+    "ask_similar": "Vraag naar vergelijkbaar werk",
+    "ask_question": "Stel een vraag",
+    "whatsapp": "WhatsApp",
+    "email": "E-mail",
+    "whatsapp_text": "Hoi, ik heb een vraag over {{ title }}",
+    "email_subject": "Vraag over {{ title }}",
+    "trust_shipping": "Gratis verzekerde verzending (NL)",
+    "trust_delivery": "Levertijd 3–5 werkdagen",
+    "trust_return": "14 dagen bedenktijd",
+    "trust_certificate": "Certificaat van echtheid",
+    "accordion_about": "Over dit werk",
+    "accordion_shipping": "Verzending & retour",
+    "accordion_care": "Verzorging",
+    "shipping_text": "Binnen Nederland gratis, verzekerd en met track & trace. Levertijd 3–5 werkdagen. Binnen de EU is het tarief vast en verzekerd. Je hebt 14 dagen bedenktijd na ontvangst.",
+    "care_text": "Hang het schilderij niet in direct zonlicht of boven een verwarming. Afstoffen kan met een droge, zachte doek.",
+    "gallery_label": "Afbeeldingen van het werk",
+    "previous_image": "Vorige afbeelding",
+    "next_image": "Volgende afbeelding",
+    "go_to_image": "Ga naar afbeelding {{ number }}",
+    "enlarge_image": "Afbeelding vergroten",
+    "zoom_toggle": "In- of uitzoomen",
+    "lightbox_label": "Vergrote afbeelding",
+    "image_counter": "{{ current }} van {{ total }}",
+    "option_label": "Kies een optie"
+  },
+  "scale": {
+    "heading": "Zo hangt het aan de muur",
+    "caption": "Formaat {{ size }} · de bank is ter vergelijking 220 cm breed",
+    "sofa_label": "Silhouet van een bank van 220 cm breed met het werk op schaal erboven"
+  },
+  "related": {
+    "heading": "Meer uit deze collectie"
+  },
+  "maker_strip": {
+    "text": "Elk werk is met de hand geschilderd, met de hand gesigneerd en wordt geleverd met een certificaat van echtheid.",
+    "link": "Lees het verhaal"
+  },
+  "home": {
+    "featured_view_all": "Bekijk alle werken",
+    "about_eyebrow": "De maker",
+    "hero_button_fallback": "Bekijk de collectie"
+  },
+  "instagram": {
+    "heading": "Volg het atelier op Instagram",
+    "follow": "Volg @{{ handle }}",
+    "alt": "Foto van @{{ handle }} op Instagram"
+  },
+  "about": {
+    "image_alt": "Foto uit het atelier van Sutarwaty"
+  },
+  "contact": {
+    "name": "Naam",
+    "email": "E-mailadres",
+    "subject": "Onderwerp",
+    "message": "Bericht",
+    "send": "Verstuur bericht",
+    "success": "Bedankt voor je bericht. Ik reageer zo snel mogelijk.",
+    "error_heading": "Er ging iets mis",
+    "details_heading": "Rechtstreeks contact",
+    "email_label": "E-mail",
+    "whatsapp_label": "WhatsApp",
+    "instagram_label": "Instagram",
+    "subject_field": "Onderwerp"
+  },
+  "faq": {
+    "label": "Veelgestelde vragen"
+  }
+}

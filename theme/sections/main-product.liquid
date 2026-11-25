@@ -1,0 +1,278 @@
+{{ 'collection.css' | asset_url | stylesheet_tag }}
+{{ 'product.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-gallery.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign mf = product.metafields.artwork
+  assign year = mf.year.value
+  assign medium = mf.medium.value
+  assign size_artwork = mf.size_artwork.value
+  assign size_framed = mf.size_framed.value
+  assign frame = mf.frame.value
+  assign story = mf.story.value
+
+  assign is_sold = true
+  if product.available
+    assign is_sold = false
+  endif
+  assign is_archived = false
+  if product.tags contains 'archief'
+    assign is_archived = true
+  endif
+  assign can_buy = false
+  unless is_sold or is_archived
+    assign can_buy = true
+  endunless
+
+  assign alt_text = 'product.image_alt' | t: title: product.title
+  assign gallery_ratio = product.featured_media.aspect_ratio | default: 0.8
+  assign encoded_title = product.title | url_encode
+  assign contact_url = routes.root_url | append: 'pages/contact?subject=' | append: encoded_title
+  assign ask_label = 'product.ask_question' | t
+  assign whatsapp_text = 'product.whatsapp_text' | t: title: product.title
+  assign email_subject = 'product.email_subject' | t: title: product.title
+-%}
+
+<section class="product section--tight" data-product-id="{{ product.id }}">
+  <div class="container product__grid">
+    <div class="product__gallery">
+      <product-gallery class="gallery" style="--gallery-ratio: {{ gallery_ratio }};">
+        <div
+          class="gallery__track"
+          data-gallery-track
+          tabindex="0"
+          role="group"
+          aria-roledescription="carousel"
+          aria-label="{{ 'product.gallery_label' | t }}"
+        >
+          {%- for media in product.media -%}
+            <div class="gallery__slide" data-gallery-slide data-index="{{ forloop.index0 }}">
+              {%- if media.media_type == 'image' -%}
+                {%- liquid
+                  assign img_loading = 'lazy'
+                  assign img_priority = 'auto'
+                  if forloop.first
+                    assign img_loading = 'eager'
+                    assign img_priority = 'high'
+                  endif
+                -%}
+                <button
+                  type="button"
+                  class="gallery__open"
+                  data-lightbox-open
+                  data-full="{{ media | image_url: width: 2200 }}"
+                  data-alt="{{ alt_text | escape }}"
+                  aria-label="{{ 'product.enlarge_image' | t }}"
+                >
+                  {{
+                    media
+                    | image_url: width: 1400
+                    | image_tag:
+                      widths: '600, 800, 1000, 1400',
+                      sizes: '(min-width: 900px) 55vw, 100vw',
+                      loading: img_loading,
+                      fetchpriority: img_priority,
+                      alt: alt_text,
+                      class: 'gallery__image'
+                  }}
+                </button>
+              {%- else -%}
+                {{ media | media_tag: image_size: '1400x', class: 'gallery__media' }}
+              {%- endif -%}
+            </div>
+          {%- else -%}
+            <div class="gallery__slide">
+              {{ 'product-1' | placeholder_svg_tag: 'gallery__placeholder' }}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- if product.media.size > 1 -%}
+          <button type="button" class="gallery__arrow gallery__arrow--prev" data-gallery-prev aria-label="{{ 'product.previous_image' | t }}">
+            {% render 'icon', name: 'arrow-right' %}
+          </button>
+          <button type="button" class="gallery__arrow gallery__arrow--next" data-gallery-next aria-label="{{ 'product.next_image' | t }}">
+            {% render 'icon', name: 'arrow-right' %}
+          </button>
+
+          <div class="gallery__dots" aria-hidden="true">
+            {%- for media in product.media -%}
+              <span class="gallery__dot{% if forloop.first %} is-active{% endif %}" data-gallery-dot></span>
+            {%- endfor -%}
+          </div>
+
+          <ul class="gallery__thumbs" role="list">
+            {%- for media in product.media -%}
+              <li>
+                <button
+                  type="button"
+                  class="gallery__thumb{% if forloop.first %} is-active{% endif %}"
+                  data-gallery-thumb
+                  aria-label="{{ 'product.go_to_image' | t: number: forloop.index }}"
+                  {% if forloop.first %}aria-current="true"{% endif %}
+                >
+                  {{ media.preview_image | image_url: width: 160 | image_tag: width: 80, loading: 'lazy', alt: '' }}
+                </button>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+        <dialog class="lightbox" data-lightbox data-counter-template="{{ 'product.image_counter' | t: current: '__CURRENT__', total: '__TOTAL__' }}" aria-label="{{ 'product.lightbox_label' | t }}">
+          <div class="lightbox__bar">
+            <p class="lightbox__counter small" aria-live="polite" data-lightbox-counter></p>
+            <button type="button" class="icon-button" data-lightbox-zoom aria-pressed="false" aria-label="{{ 'product.zoom_toggle' | t }}">
+              {% render 'icon', name: 'search' %}
+            </button>
+            <button type="button" class="icon-button" data-lightbox-close aria-label="{{ 'general.close' | t }}">
+              {% render 'icon', name: 'close' %}
+            </button>
+          </div>
+          <div class="lightbox__stage" data-lightbox-stage>
+            <img class="lightbox__image" data-lightbox-image width="1600" height="1600" alt="" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+          </div>
+          {%- if product.media.size > 1 -%}
+            <button type="button" class="gallery__arrow gallery__arrow--prev lightbox__arrow" data-lightbox-prev aria-label="{{ 'product.previous_image' | t }}">
+              {% render 'icon', name: 'arrow-right' %}
+            </button>
+            <button type="button" class="gallery__arrow gallery__arrow--next lightbox__arrow" data-lightbox-next aria-label="{{ 'product.next_image' | t }}">
+              {% render 'icon', name: 'arrow-right' %}
+            </button>
+          {%- endif -%}
+        </dialog>
+      </product-gallery>
+    </div>
+
+    <div class="product__info">
+      <div class="product__info-inner">
+        <h1 class="product__title">{{ product.title }}</h1>
+        {%- if year != blank -%}
+          <p class="product__year muted">{{ year }}</p>
+        {%- endif -%}
+
+        {%- if medium != blank or size_artwork != blank or size_framed != blank or frame != blank -%}
+          <dl class="product__details" aria-label="{{ 'product.details_label' | t }}">
+            {%- if medium != blank -%}
+              <div><dt>{{ 'product.medium' | t }}</dt><dd>{{ medium }}</dd></div>
+            {%- endif -%}
+            {%- if size_artwork != blank -%}
+              <div><dt>{{ 'product.size_artwork' | t }}</dt><dd>{{ size_artwork }}</dd></div>
+            {%- endif -%}
+            {%- if size_framed != blank -%}
+              <div><dt>{{ 'product.size_framed' | t }}</dt><dd>{{ size_framed }}</dd></div>
+            {%- endif -%}
+            {%- if frame != blank -%}
+              <div><dt>{{ 'product.frame' | t }}</dt><dd>{{ frame }}</dd></div>
+            {%- endif -%}
+          </dl>
+        {%- endif -%}
+
+        {%- if can_buy -%}
+          <p class="product__price">{% render 'price', product: product %}</p>
+          <p class="product__status">{{ 'product.unique_available' | t }}</p>
+        {%- elsif is_sold -%}
+          <p class="product__status product__status--sold">{{ 'product.sold' | t }}</p>
+        {%- else -%}
+          <p class="product__status product__status--sold">{{ 'product.not_for_sale' | t }}</p>
+        {%- endif -%}
+
+        {%- if can_buy -%}
+          {%- form 'product', product, class: 'product__form', data-product-form: '' -%}
+            {%- if product.has_only_default_variant -%}
+              <input type="hidden" name="id" value="{{ variant.id }}">
+            {%- else -%}
+              <label class="visually-hidden" for="variant-{{ section.id }}">{{ 'product.option_label' | t }}</label>
+              <select class="field field--select product__select" id="variant-{{ section.id }}" name="id">
+                {%- for v in product.variants -%}
+                  <option value="{{ v.id }}"{% if v == variant %} selected{% endif %}{% unless v.available %} disabled{% endunless %}>{{ v.title }} — {{ v.price | money }}</option>
+                {%- endfor -%}
+              </select>
+            {%- endif -%}
+            <button type="submit" class="button button--full" name="add" data-add-to-cart>
+              {{ 'product.add_to_cart' | t }}
+            </button>
+          {%- endform -%}
+
+          <ul class="product__trust small" role="list">
+            <li>{{ 'product.trust_shipping' | t }}</li>
+            <li>{{ 'product.trust_delivery' | t }}</li>
+            <li>{{ 'product.trust_return' | t }}</li>
+            <li>{{ 'product.trust_certificate' | t }}</li>
+          </ul>
+        {%- else -%}
+          <a class="button button--full" href="{{ contact_url }}">{{ 'product.ask_similar' | t }}</a>
+        {%- endif -%}
+
+        <div class="product__ask">
+          <p class="product__ask-title">{{ ask_label }}</p>
+          <ul class="product__ask-links" role="list">
+            {%- if settings.whatsapp_number != blank -%}
+              <li>
+                <a class="button button--secondary" href="https://wa.me/{{ settings.whatsapp_number }}?text={{ whatsapp_text | url_encode }}" target="_blank" rel="noopener">
+                  {% render 'icon', name: 'whatsapp' %}
+                  {{ 'product.whatsapp' | t }}
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.contact_email != blank -%}
+              <li>
+                <a class="button button--secondary" href="mailto:{{ settings.contact_email }}?subject={{ email_subject | url_encode }}">
+                  {% render 'icon', name: 'mail' %}
+                  {{ 'product.email' | t }}
+                </a>
+              </li>
+            {%- endif -%}
+          </ul>
+        </div>
+
+        <div class="accordions">
+          {%- if story != blank or product.description != blank -%}
+            <details class="accordion" open>
+              <summary class="accordion__summary">{{ 'product.accordion_about' | t }}{% render 'icon', name: 'plus' %}</summary>
+              <div class="accordion__content rte">
+                {%- if story != blank -%}
+                  {{ story | newline_to_br }}
+                {%- else -%}
+                  {{ product.description }}
+                {%- endif -%}
+              </div>
+            </details>
+          {%- endif -%}
+          <details class="accordion">
+            <summary class="accordion__summary">{{ 'product.accordion_shipping' | t }}{% render 'icon', name: 'plus' %}</summary>
+            <div class="accordion__content rte">
+              {%- if section.settings.shipping_text != blank -%}
+                {{ section.settings.shipping_text }}
+              {%- else -%}
+                <p>{{ 'product.shipping_text' | t }}</p>
+              {%- endif -%}
+            </div>
+          </details>
+          <details class="accordion">
+            <summary class="accordion__summary">{{ 'product.accordion_care' | t }}{% render 'icon', name: 'plus' %}</summary>
+            <div class="accordion__content rte">
+              {%- if section.settings.care_text != blank -%}
+                {{ section.settings.care_text }}
+              {%- else -%}
+                <p>{{ 'product.care_text' | t }}</p>
+              {%- endif -%}
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% render 'json-ld-product', product: product, variant: variant %}
+
+{% schema %}
+{
+  "name": "Productpagina",
+  "settings": [
+    { "type": "richtext", "id": "shipping_text", "label": "Tekst 'Verzending & retour'", "info": "Leeg laten voor de standaardtekst." },
+    { "type": "richtext", "id": "care_text", "label": "Tekst 'Verzorging'", "info": "Leeg laten voor de standaardtekst." }
+  ]
+}
+{% endschema %}

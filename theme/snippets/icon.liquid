@@ -1,0 +1,37 @@
+{%- comment -%}
+  Lijn-iconen (24x24, 1.5px streek).
+  Gebruik: {% render 'icon', name: 'search' %}
+  Namen: search, cart, menu, close, plus, minus, arrow-right, instagram, whatsapp, mail
+{%- endcomment -%}
+<svg class="icon icon--{{ name }}{% if class != blank %} {{ class }}{% endif %}" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  {%- case name -%}
+    {%- when 'search' -%}
+      <circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/>
+    {%- when 'cart' -%}
+      <path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>
+    {%- when 'menu' -%}
+      <path d="M4 8h16M4 16h16"/>
+    {%- when 'close' -%}
+      <path d="m6 6 12 12M18 6 6 18"/>
+    {%- when 'plus' -%}
+      <path d="M12 5v14M5 12h14"/>
+    {%- when 'minus' -%}
+      <path d="M5 12h14"/>
+    {%- when 'arrow-right' -%}
+      <path d="M4 12h16M14 6l6 6-6 6"/>
+    {%- when 'instagram' -%}
+      <rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.5"/><circle cx="16.8" cy="7.2" r=".6" fill="currentColor"/>
+    {%- when 'whatsapp' -%}
+      <path d="M4 20l1.2-4.2A8 8 0 1 1 8.3 18.9L4 20Z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-.8.7a3.5 3.5 0 0 1-1.9-1.9l.7-.8-1-2L9 9.5Z"/>
+    {%- when 'unique' -%}
+      <path d="m12 3 2.4 5.6L20 11l-5.6 2.4L12 19l-2.4-5.6L4 11l5.6-2.4L12 3Z"/>
+    {%- when 'truck' -%}
+      <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>
+    {%- when 'return' -%}
+      <path d="M4 12a8 8 0 1 0 2.6-5.9"/><path d="M4 4v4.5h4.5"/>
+    {%- when 'certificate' -%}
+      <path d="M4 4h16v12H4z"/><path d="M8 9h8M8 12h4"/><path d="m14.5 16-.8 5 2.8-1.6 2.8 1.6-.8-5"/>
+    {%- when 'mail' -%}
+      <rect x="3.5" y="5.5" width="17" height="13" rx="1"/><path d="m4 7 8 6 8-6"/>
+  {%- endcase -%}
+</svg>

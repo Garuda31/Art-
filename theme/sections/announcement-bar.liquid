@@ -1,0 +1,32 @@
+{%- liquid
+  assign bar_text = section.settings.text
+  if bar_text == blank
+    assign bar_text = 'announcement.text' | t
+  endif
+-%}
+
+{%- if section.settings.show -%}
+  <div class="announcement-bar" role="region" aria-label="{{ bar_text | escape }}">
+    {%- if section.settings.link != blank -%}
+      <a class="announcement-bar__text" href="{{ section.settings.link }}">{{ bar_text }}</a>
+    {%- else -%}
+      <p class="announcement-bar__text">{{ bar_text }}</p>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Aankondigingsbalk",
+  "settings": [
+    { "type": "checkbox", "id": "show", "label": "Aankondigingsbalk tonen", "default": true },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Tekst",
+      "info": "Leeg laten voor de standaardtekst (gratis verzekerde verzending binnen Nederland)."
+    },
+    { "type": "url", "id": "link", "label": "Link (optioneel)" }
+  ]
+}
+{% endschema %}

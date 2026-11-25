@@ -1,0 +1,108 @@
+{%- liquid
+  assign newsletter_heading = section.settings.newsletter_heading
+  if newsletter_heading == blank
+    assign newsletter_heading = 'footer.newsletter_heading' | t
+  endif
+  assign newsletter_text = section.settings.newsletter_text
+  if newsletter_text == blank
+    assign newsletter_text = 'footer.newsletter_text' | t
+  endif
+  assign tagline = section.settings.tagline
+  if tagline == blank
+    assign tagline = 'footer.tagline' | t
+  endif
+  assign shop_menu = section.settings.shop_menu
+  assign info_menu = section.settings.info_menu
+  assign current_year = 'now' | date: '%Y'
+  assign instagram_url = 'https://www.instagram.com/' | append: settings.instagram_handle
+-%}
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__col site-footer__brand">
+        <p class="site-logo site-logo--text">{{ shop.name }}</p>
+        <p class="site-footer__tagline">{{ tagline }}</p>
+      </div>
+
+      <nav class="site-footer__col" aria-labelledby="footer-shop-heading">
+        <h2 class="site-footer__heading" id="footer-shop-heading">{{ 'footer.shop_heading' | t }}</h2>
+        <ul class="site-footer__list">
+          {%- if shop_menu != blank and shop_menu.links.size > 0 -%}
+            {%- for link in shop_menu.links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          {%- else -%}
+            <li><a href="{{ routes.all_products_url }}">{{ 'footer.link_collection' | t }}</a></li>
+            <li><a href="{{ routes.collections_url }}/archief">{{ 'footer.link_archive' | t }}</a></li>
+          {%- endif -%}
+        </ul>
+      </nav>
+
+      <nav class="site-footer__col" aria-labelledby="footer-info-heading">
+        <h2 class="site-footer__heading" id="footer-info-heading">{{ 'footer.info_heading' | t }}</h2>
+        <ul class="site-footer__list">
+          {%- if info_menu != blank and info_menu.links.size > 0 -%}
+            {%- for link in info_menu.links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          {%- else -%}
+            <li><a href="{{ routes.root_url }}pages/over">{{ 'footer.link_about' | t }}</a></li>
+            <li><a href="{{ routes.root_url }}pages/faq">{{ 'footer.link_faq' | t }}</a></li>
+            <li><a href="{{ routes.root_url }}pages/verzending-retour">{{ 'footer.link_shipping' | t }}</a></li>
+            <li><a href="{{ routes.root_url }}pages/contact">{{ 'footer.link_contact' | t }}</a></li>
+          {%- endif -%}
+        </ul>
+      </nav>
+
+      <div class="site-footer__col">
+        <h2 class="site-footer__heading">{{ newsletter_heading }}</h2>
+        <p class="site-footer__text">{{ newsletter_text }}</p>
+        {% render 'newsletter-form', id: 'footer-newsletter' %}
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <ul class="site-footer__legal">
+        <li>{{ 'footer.copyright' | t: year: current_year, shop: shop.name }}</li>
+        {%- if settings.kvk_number != blank -%}
+          <li>{{ 'footer.kvk' | t: number: settings.kvk_number }}</li>
+        {%- endif -%}
+        {%- for policy in shop.policies -%}
+          {%- if policy.url != blank -%}
+            <li><a href="{{ policy.url }}">{{ policy.title }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if settings.instagram_handle != blank -%}
+          <li>
+            <a href="{{ instagram_url }}" rel="noopener" target="_blank" class="site-footer__social">
+              {% render 'icon', name: 'instagram' %}
+              <span>{{ 'footer.instagram' | t }}</span>
+            </a>
+          </li>
+        {%- endif -%}
+      </ul>
+
+      {%- if settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <ul class="site-footer__payments" role="list" aria-label="{{ 'footer.payment_methods' | t }}">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>{{ type | payment_type_svg_tag: class: 'payment-icon' }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "Tagline", "info": "Leeg laten voor de standaardtekst." },
+    { "type": "link_list", "id": "shop_menu", "label": "Menu Winkel", "info": "Zonder menu worden Collectie en Archief getoond." },
+    { "type": "link_list", "id": "info_menu", "label": "Menu Info", "info": "Zonder menu worden Over, FAQ, Verzending & retour en Contact getoond." },
+    { "type": "text", "id": "newsletter_heading", "label": "Kop nieuwsbrief", "info": "Leeg laten voor de standaardtekst." },
+    { "type": "textarea", "id": "newsletter_text", "label": "Tekst nieuwsbrief", "info": "Leeg laten voor de standaardtekst." }
+  ]
+}
+{% endschema %}

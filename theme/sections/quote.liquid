@@ -1,0 +1,23 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+<section class="section quote">
+  <div class="container">
+    <figure class="quote__figure" data-reveal>
+      <blockquote class="quote__text">{{ section.settings.text }}</blockquote>
+      {%- if section.settings.author != blank -%}
+        <figcaption class="quote__author eyebrow">{{ section.settings.author }}</figcaption>
+      {%- endif -%}
+    </figure>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Citaat",
+  "settings": [
+    { "type": "textarea", "id": "text", "label": "Citaat" },
+    { "type": "text", "id": "author", "label": "Naam", "default": "Sutarwaty" }
+  ],
+  "presets": [{ "name": "Citaat" }]
+}
+{% endschema %}

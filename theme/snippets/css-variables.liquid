@@ -1,0 +1,38 @@
+<style>
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 500 600;
+    font-display: swap;
+    src: url('{{ 'cormorant-garamond-latin.woff2' | asset_url }}') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400 500;
+    font-display: swap;
+    src: url('{{ 'inter-latin.woff2' | asset_url }}') format('woff2');
+  }
+
+  :root {
+    --color-bg: {{ settings.color_bg }};
+    --color-ink: {{ settings.color_ink }};
+    --color-stone: {{ settings.color_stone }};
+    --color-accent: {{ settings.color_accent }};
+    --color-white: {{ settings.color_white }};
+
+    /* Afgeleid voor voldoende contrast (WCAG AA) bij tekst */
+    --color-stone-text: color-mix(in srgb, var(--color-stone) 68%, var(--color-ink));
+    --color-accent-deep: color-mix(in srgb, var(--color-accent) 60%, var(--color-ink));
+    --color-canvas: color-mix(in srgb, var(--color-white) 55%, var(--color-bg));
+    --color-ink-hover: color-mix(in srgb, var(--color-ink) 82%, var(--color-bg));
+
+    --font-heading: 'Cormorant Garamond', 'Cormorant', Georgia, 'Times New Roman', serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+    --page-width: {{ settings.page_width }}px;
+    --grid-mobile-columns: {{ settings.grid_mobile_columns }};
+    --logo-width: {{ settings.logo_width }}px;
+  }
+</style>

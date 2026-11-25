@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "main": {
+      "type": "shipping-returns",
+      "blocks": {
+        "topic_1": {
+          "type": "topic",
+          "settings": {
+            "heading": "Verzending",
+            "text": "<p>Binnen Nederland gratis, verzekerd en met track &amp; trace. Levertijd 3–5 werkdagen.</p><p>Binnen de EU: vast tarief €[25], verzekerd.</p>"
+          }
+        },
+        "topic_2": {
+          "type": "topic",
+          "settings": {
+            "heading": "Verpakking",
+            "text": "<p>Zorgvuldig verpakt: hoekbeschermers, dubbel karton; lijsten met plexiglas.</p>"
+          }
+        },
+        "topic_3": {
+          "type": "topic",
+          "settings": {
+            "heading": "Bedenktijd en retour",
+            "text": "<p>14 dagen bedenktijd na ontvangst. Retourzending op kosten van de koper, goed verpakt. Geld terug binnen 14 dagen na ontvangst van het werk.</p><p>Werk in opdracht is uitgesloten van herroeping.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "topic_1",
+        "topic_2",
+        "topic_3"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

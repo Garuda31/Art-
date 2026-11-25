@@ -1,0 +1,9 @@
+{%- comment -%}
+  Prijs van een product. Parameters: product
+{%- endcomment -%}
+<span class="price">
+  {%- if product.compare_at_price > product.price -%}
+    <s class="price__compare">{{ product.compare_at_price | money }}</s>
+  {%- endif -%}
+  <span class="price__current">{{ product.price | money }}</span>
+</span>

@@ -1,0 +1,63 @@
+{
+  "sections": {
+    "main": {
+      "type": "faq",
+      "blocks": {
+        "question_1": {
+          "type": "question",
+          "settings": {
+            "question": "Zijn de werken echt uniek?",
+            "answer": "<p>Ja. Elk schilderij bestaat één keer, is met de hand gesigneerd en komt met een certificaat van echtheid.</p>"
+          }
+        },
+        "question_2": {
+          "type": "question",
+          "settings": {
+            "question": "Kan ik een werk eerst in het echt zien?",
+            "answer": "<p>Ja, op afspraak in [plaats]. Stuur een bericht via de contactpagina.</p>"
+          }
+        },
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "question": "Wordt het werk ingelijst geleverd?",
+            "answer": "<p>Dat staat per werk vermeld. Ingelijste werken zijn direct klaar om op te hangen.</p>"
+          }
+        },
+        "question_4": {
+          "type": "question",
+          "settings": {
+            "question": "Hoe verzorg ik het schilderij?",
+            "answer": "<p>Niet in direct zonlicht of boven een verwarming hangen; afstoffen met een droge, zachte doek.</p>"
+          }
+        },
+        "question_5": {
+          "type": "question",
+          "settings": {
+            "question": "Kan ik een werk in opdracht laten maken?",
+            "answer": "<p>[Ja/Nee — invullen]. Neem contact op voor de mogelijkheden.</p>"
+          }
+        },
+        "question_6": {
+          "type": "question",
+          "settings": {
+            "question": "Hoe kan ik betalen?",
+            "answer": "<p>iDEAL, Bancontact, creditcard en PayPal.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_1",
+        "question_2",
+        "question_3",
+        "question_4",
+        "question_5",
+        "question_6"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

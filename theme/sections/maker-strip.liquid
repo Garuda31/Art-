@@ -1,0 +1,41 @@
+{{ 'product.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign strip_text = section.settings.text
+  if strip_text == blank
+    assign strip_text = 'maker_strip.text' | t
+  endif
+  assign strip_link = section.settings.link
+  if strip_link == blank
+    assign strip_link = routes.root_url | append: 'pages/over'
+  endif
+-%}
+
+<section class="maker-strip">
+  <div class="container maker-strip__inner" data-reveal>
+    {%- if section.settings.image -%}
+      {{
+        section.settings.image
+        | image_url: width: 240
+        | image_tag: width: 96, height: 96, loading: 'lazy', alt: '', class: 'maker-strip__image'
+      }}
+    {%- endif -%}
+    <p class="maker-strip__text">{{ strip_text }}</p>
+    <a class="link-arrow" href="{{ strip_link }}">
+      {{ 'maker_strip.link' | t }}
+      {% render 'icon', name: 'arrow-right' %}
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Maker-strook",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Foto van de maker (rond)" },
+    { "type": "textarea", "id": "text", "label": "Tekst", "info": "Leeg laten voor de standaardtekst." },
+    { "type": "url", "id": "link", "label": "Link", "info": "Leeg laten voor de pagina 'Over'." }
+  ],
+  "presets": []
+}
+{% endschema %}

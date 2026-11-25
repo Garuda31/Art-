@@ -1,0 +1,47 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+<section class="trust-bar" aria-label="{{ section.settings.label | escape }}">
+  <div class="container">
+    <ul class="trust-bar__list" role="list">
+      {%- for block in section.blocks -%}
+        <li class="trust-bar__item" data-reveal {{ block.shopify_attributes }}>
+          {% render 'icon', name: block.settings.icon, class: 'trust-bar__icon' %}
+          <span>{{ block.settings.text }}</span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Vertrouwensbalk",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Toegankelijke naam", "default": "Onze beloftes" }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Punt",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icoon",
+          "options": [
+            { "value": "unique", "label": "Ster (uniek)" },
+            { "value": "truck", "label": "Vrachtwagen (verzending)" },
+            { "value": "return", "label": "Pijl (bedenktijd)" },
+            { "value": "certificate", "label": "Certificaat" },
+            { "value": "mail", "label": "Envelop" }
+          ],
+          "default": "unique"
+        },
+        { "type": "text", "id": "text", "label": "Tekst", "default": "Uniek origineel" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Vertrouwensbalk" }]
+}
+{% endschema %}

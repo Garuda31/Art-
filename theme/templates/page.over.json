@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "about-page",
+      "settings": {
+        "text": "<p>Ik ben [voornaam] Sutarwaty. Ik schilder al [aantal] jaar, het liefst zonder plan vooraf. Ik begin met een kleur die me die dag raakt, en laat het werk zich daarna vanzelf ontwikkelen — laag over laag, lijn na lijn.</p><p>[Eén persoonlijke zin: achtergrond, inspiratie, waarom ik schilder.]</p><p>Elk schilderij is uniek. Ik signeer elk werk met de hand en lever het met een certificaat van echtheid. Ik vind het mooi om te weten waar mijn werk terechtkomt — stuur me gerust een foto als het eenmaal hangt.</p>",
+        "button_label": "Bekijk de collectie"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

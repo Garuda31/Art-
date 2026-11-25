@@ -1,0 +1,41 @@
+{{ 'collection.css' | asset_url | stylesheet_tag }}
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign source = section.settings.collection
+  if source == blank
+    assign source = collections['all']
+  endif
+-%}
+
+<section class="section featured">
+  <div class="container">
+    <div class="section-heading" data-reveal>
+      <h2>{{ section.settings.heading }}</h2>
+      <a class="link-arrow" href="{{ source.url }}">
+        {{ 'home.featured_view_all' | t }}
+        {% render 'icon', name: 'arrow-right' %}
+      </a>
+    </div>
+
+    <ul class="product-grid" role="list">
+      {%- for product in source.products limit: section.settings.count -%}
+        <li class="product-grid__item" data-reveal>
+          {% render 'product-card', product: product, eager: false %}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Uitgelichte werken",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Kop", "default": "Uitgelicht" },
+    { "type": "collection", "id": "collection", "label": "Collectie", "info": "Leeg laten voor alle werken." },
+    { "type": "range", "id": "count", "label": "Aantal werken", "min": 4, "max": 6, "step": 1, "default": 6 }
+  ],
+  "presets": [{ "name": "Uitgelichte werken" }]
+}
+{% endschema %}

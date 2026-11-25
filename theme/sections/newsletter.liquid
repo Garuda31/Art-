@@ -1,0 +1,32 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign heading = section.settings.heading
+  if heading == blank
+    assign heading = 'footer.newsletter_heading' | t
+  endif
+  assign text = section.settings.text
+  if text == blank
+    assign text = 'footer.newsletter_text' | t
+  endif
+-%}
+
+<section class="section newsletter">
+  <div class="container newsletter__inner" data-reveal>
+    <h2>{{ heading }}</h2>
+    <p>{{ text }}</p>
+    {%- assign form_id = 'newsletter-' | append: section.id -%}
+    {% render 'newsletter-form', id: form_id %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Nieuwsbrief",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Kop", "info": "Leeg laten voor de standaardtekst." },
+    { "type": "textarea", "id": "text", "label": "Tekst", "info": "Leeg laten voor de standaardtekst." }
+  ],
+  "presets": [{ "name": "Nieuwsbrief" }]
+}
+{% endschema %}
