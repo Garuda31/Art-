@@ -371,3 +371,8 @@ a.announcement-bar__text:hover { color: var(--color-white); text-decoration: und
 /* ---------- Wachtwoordpagina ---------- */
 .password-page { padding-block: 96px; text-align: center; }
 .password-page .site-logo { margin-bottom: 48px; }
+
+@media (max-width: 480px) {
+  .site-logo__text, .site-logo--text { font-size: 17px; letter-spacing: 0.2em; margin-right: -0.2em; }
+  .site-header.is-compact .site-logo__text { font-size: 16px; }
+}

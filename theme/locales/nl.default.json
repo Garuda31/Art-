@@ -148,5 +148,42 @@
   },
   "faq": {
     "label": "Veelgestelde vragen"
+  },
+  "cart": {
+    "title": "Winkelmand",
+    "empty": "Je winkelmand is leeg.",
+    "continue": "Verder kijken",
+    "remove": "Verwijderen",
+    "remove_item": "{{ title }} verwijderen",
+    "subtotal": "Subtotaal",
+    "checkout": "Afrekenen",
+    "shipping_note": "Gratis verzekerde verzending binnen Nederland. Btw en eventuele verzendkosten naar het buitenland zie je bij het afrekenen.",
+    "close": "Winkelmand sluiten",
+    "error": "Dit werk kan niet worden toegevoegd. Misschien is het zojuist verkocht.",
+    "adding": "Toevoegen…",
+    "unique_note": "Uniek origineel"
+  },
+  "popup": {
+    "label": "Nieuwsbrief",
+    "close": "Venster sluiten"
+  },
+  "search": {
+    "title": "Zoeken",
+    "placeholder": "Zoek een werk",
+    "submit": "Zoeken",
+    "results_for": {
+      "one": "{{ count }} resultaat voor ‘{{ terms }}’",
+      "other": "{{ count }} resultaten voor ‘{{ terms }}’"
+    },
+    "no_results": "Geen resultaten voor ‘{{ terms }}’. Probeer een andere zoekterm of bekijk de collectie.",
+    "browse": "Bekijk de collectie",
+    "type_page": "Pagina",
+    "type_article": "Artikel"
+  },
+  "not_found": {
+    "title": "Deze pagina bestaat niet",
+    "text": "De pagina die je zoekt is verplaatst of bestaat niet meer. Bekijk de collectie of ga terug naar het begin.",
+    "home": "Naar het begin",
+    "collection": "Bekijk de collectie"
   }
 }

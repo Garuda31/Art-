@@ -1,0 +1,31 @@
+{%- if settings.newsletter_popup_enabled and template.name != 'cart' -%}
+  {{ 'cart.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'newsletter-popup.js' | asset_url }}" defer></script>
+
+  <dialog
+    class="popup"
+    data-newsletter-popup
+    data-delay="{{ settings.newsletter_popup_delay }}"
+    data-exit-intent="{{ settings.newsletter_popup_exit_intent }}"
+    aria-label="{{ 'popup.label' | t }}"
+  >
+    <button type="button" class="icon-button popup__close" data-popup-close aria-label="{{ 'popup.close' | t }}">
+      {% render 'icon', name: 'close' %}
+    </button>
+    <h2>{{ 'footer.newsletter_heading' | t }}</h2>
+    <p>{{ 'footer.newsletter_text' | t }}</p>
+    {% render 'newsletter-form', id: 'popup-newsletter' %}
+  </dialog>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Nieuwsbriefvenster",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Aan/uit, vertraging en exit-intent stel je in bij Themainstellingen → Nieuwsbriefvenster."
+    }
+  ]
+}
+{% endschema %}

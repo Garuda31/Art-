@@ -1,0 +1,30 @@
+{{ 'cart.css' | asset_url | stylesheet_tag }}
+
+<section class="section cart-page">
+  <div class="container">
+    <h1 class="cart-page__title">{{ 'cart.title' | t }}</h1>
+
+    {%- if cart.item_count == 0 -%}
+      <div class="cart-empty">
+        <p>{{ 'cart.empty' | t }}</p>
+        <a class="button" href="{{ routes.all_products_url }}">{{ 'cart.continue' | t }}</a>
+      </div>
+    {%- else -%}
+      <div class="cart-page__grid">
+        <div class="cart-page__items">
+          {% render 'cart-items' %}
+        </div>
+        <aside class="cart-page__summary">
+          {% render 'cart-summary' %}
+        </aside>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Winkelmand",
+  "settings": []
+}
+{% endschema %}

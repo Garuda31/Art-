@@ -1,0 +1,45 @@
+{{ 'cart.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cart.js' | asset_url }}" defer></script>
+
+<dialog
+  class="cart-drawer"
+  data-cart-drawer
+  data-cart-url="{{ routes.cart_url }}"
+  data-root="{{ routes.root_url }}"
+  data-section-id="{{ section.id }}"
+  {% if template.name == 'cart' %}data-cart-page{% endif %}
+  aria-label="{{ 'cart.title' | t }}"
+>
+  <div class="cart-drawer__inner">
+    <header class="cart-drawer__header">
+      <h2 class="h3">{{ 'cart.title' | t }}</h2>
+      <button type="button" class="icon-button" data-cart-close aria-label="{{ 'cart.close' | t }}">
+        {% render 'icon', name: 'close' %}
+      </button>
+    </header>
+
+    <div class="cart-drawer__body" data-cart-drawer-body>
+      <span hidden data-cart-count-source="{{ cart.item_count }}" data-cart-label-source="{{ 'header.cart_count' | t: count: cart.item_count }}"></span>
+      {%- if cart.item_count == 0 -%}
+        <div class="cart-empty">
+          <p>{{ 'cart.empty' | t }}</p>
+          <a class="button button--secondary" href="{{ routes.all_products_url }}">{{ 'cart.continue' | t }}</a>
+        </div>
+      {%- else -%}
+        <div class="cart-drawer__items">
+          {% render 'cart-items' %}
+        </div>
+        <div class="cart-drawer__footer">
+          {% render 'cart-summary' %}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</dialog>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": []
+}
+{% endschema %}

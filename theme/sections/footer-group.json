@@ -5,7 +5,14 @@
     "footer": {
       "type": "footer",
       "settings": {}
+    },
+    "newsletter-popup": {
+      "type": "newsletter-popup",
+      "settings": {}
     }
   },
-  "order": ["footer"]
+  "order": [
+    "footer",
+    "newsletter-popup"
+  ]
 }

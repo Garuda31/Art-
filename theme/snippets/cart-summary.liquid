@@ -1,0 +1,20 @@
+{%- comment -%}
+  Subtotaal, verzendmelding, afrekenknop en vertrouwenspunten.
+{%- endcomment -%}
+<div class="cart-summary">
+  <p class="cart-summary__row">
+    <span>{{ 'cart.subtotal' | t }}</span>
+    <span class="cart-summary__total">{{ cart.total_price | money }}</span>
+  </p>
+  <p class="cart-summary__note small">{{ 'cart.shipping_note' | t }}</p>
+
+  <form action="{{ routes.cart_url }}" method="post">
+    <button type="submit" name="checkout" class="button button--full">{{ 'cart.checkout' | t }}</button>
+  </form>
+
+  <ul class="cart-summary__trust small" role="list">
+    <li>{% render 'icon', name: 'truck' %}{{ 'product.trust_shipping' | t }}</li>
+    <li>{% render 'icon', name: 'return' %}{{ 'product.trust_return' | t }}</li>
+    <li>{% render 'icon', name: 'certificate' %}{{ 'product.trust_certificate' | t }}</li>
+  </ul>
+</div>

@@ -1,0 +1,81 @@
+/* Winkelmand (drawer + pagina) en nieuwsbriefvenster */
+
+/* ---------- Drawer ---------- */
+.cart-drawer, .popup {
+  border: 0; padding: 0;
+  background: var(--color-bg); color: var(--color-ink);
+}
+.cart-drawer:not([open]), .popup:not([open]) { display: none; }
+.cart-drawer::backdrop, .popup::backdrop { background: rgb(26 26 26 / .45); }
+
+.cart-drawer {
+  position: fixed; inset: 0 0 0 auto;
+  width: min(440px, 100vw); max-width: none;
+  height: 100%; max-height: none; margin: 0;
+  border-left: 1px solid var(--color-stone);
+}
+.cart-drawer[open] { display: block; animation: drawer-in .3s ease; }
+@keyframes drawer-in { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.cart-drawer__inner { display: flex; flex-direction: column; height: 100%; }
+.cart-drawer__header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 12px 12px 24px; border-bottom: 1px solid var(--color-stone);
+}
+.cart-drawer__body { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.cart-drawer__items { flex: 1; overflow-y: auto; padding: 8px 24px; }
+.cart-drawer__footer { padding: 20px 24px 24px; border-top: 1px solid var(--color-stone); background: var(--color-white); }
+
+.cart-empty { display: grid; gap: 20px; justify-items: start; padding: 32px 24px; }
+
+/* ---------- Regels ---------- */
+.cart-item {
+  display: grid; grid-template-columns: 80px 1fr auto; gap: 16px; align-items: start;
+  padding-block: 20px; border-bottom: 1px solid var(--color-stone);
+}
+.cart-item:last-child { border-bottom: 0; }
+.cart-item__media { display: block; aspect-ratio: 4 / 5; background: var(--color-canvas); }
+.cart-item__media img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.cart-item__info { display: grid; gap: 2px; }
+.cart-item__title { font-family: var(--font-heading); font-size: 22px; line-height: 1.15; text-decoration: none; }
+.cart-item__meta { color: var(--color-stone-text); max-width: none; }
+.cart-item__remove { justify-self: start; margin-top: 8px; color: var(--color-stone-text); }
+.cart-item__remove[aria-disabled='true'] { opacity: .5; pointer-events: none; }
+.cart-item__price { margin: 0; font-size: 15px; }
+
+/* ---------- Samenvatting ---------- */
+.cart-summary { display: grid; gap: 14px; }
+.cart-summary__row { display: flex; justify-content: space-between; align-items: baseline; max-width: none; }
+.cart-summary__total { font-size: 22px; }
+.cart-summary__note { color: var(--color-stone-text); max-width: none; }
+.cart-summary__trust { display: grid; gap: 8px; margin-top: 4px; color: var(--color-stone-text); }
+.cart-summary__trust li { display: flex; align-items: center; gap: 10px; }
+.cart-summary__trust .icon { width: 18px; height: 18px; }
+
+/* ---------- Cartpagina ---------- */
+.cart-page__title { margin-bottom: 32px; }
+.cart-page__grid { display: grid; gap: 40px; }
+@media (min-width: 900px) {
+  .cart-page__grid { grid-template-columns: 3fr 2fr; gap: clamp(48px, 6vw, 96px); align-items: start; }
+  .cart-page__summary { position: sticky; top: calc(var(--header-height) + 24px); padding: 28px; background: var(--color-white); border: 1px solid var(--color-stone); }
+}
+.cart-page .cart-item { grid-template-columns: 100px 1fr auto; }
+.cart-page__items { border-top: 1px solid var(--color-stone); }
+
+/* ---------- Nieuwsbriefvenster ---------- */
+.popup {
+  position: fixed; inset: 0; margin: auto;
+  width: min(480px, calc(100vw - 32px)); max-height: calc(100vh - 32px);
+  padding: clamp(28px, 5vw, 44px);
+  border: 1px solid var(--color-stone);
+  text-align: center;
+}
+.popup[open] { display: grid; gap: 14px; justify-items: center; animation: popup-in .3s ease; }
+@keyframes popup-in { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
+.popup__close { position: absolute; top: 6px; right: 6px; }
+.popup p { color: var(--color-stone-text); }
+.popup .newsletter-form { width: 100%; text-align: left; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-drawer[open], .popup[open] { animation: none; }
+}

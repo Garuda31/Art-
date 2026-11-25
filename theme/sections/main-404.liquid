@@ -1,0 +1,20 @@
+{{ 'sections.css' | asset_url | stylesheet_tag }}
+
+<section class="section not-found">
+  <div class="container not-found__inner">
+    <p class="eyebrow">404</p>
+    <h1>{{ 'not_found.title' | t }}</h1>
+    <p>{{ 'not_found.text' | t }}</p>
+    <div class="not-found__actions">
+      <a class="button" href="{{ routes.all_products_url }}">{{ 'not_found.collection' | t }}</a>
+      <a class="button button--secondary" href="{{ routes.root_url }}">{{ 'not_found.home' | t }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pagina niet gevonden",
+  "settings": []
+}
+{% endschema %}

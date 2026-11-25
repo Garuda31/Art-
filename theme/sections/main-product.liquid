@@ -189,9 +189,10 @@
                 {%- endfor -%}
               </select>
             {%- endif -%}
-            <button type="submit" class="button button--full" name="add" data-add-to-cart>
+            <button type="submit" class="button button--full" name="add" data-add-to-cart data-adding-label="{{ 'cart.adding' | t }}">
               {{ 'product.add_to_cart' | t }}
             </button>
+            <p class="product__error small" role="alert" data-form-error data-fallback="{{ 'cart.error' | t | escape }}" hidden></p>
           {%- endform -%}
 
           <ul class="product__trust small" role="list">

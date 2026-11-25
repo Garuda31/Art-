@@ -1,0 +1,43 @@
+{%- comment -%}
+  Regels in de winkelmand (drawer en cartpagina).
+  Elk werk is uniek: geen aantalkeuze, alleen verwijderen.
+{%- endcomment -%}
+<ul class="cart-items" role="list">
+  {%- for item in cart.items -%}
+    {%- liquid
+      assign mf = item.product.metafields.artwork
+      assign medium = mf.medium.value
+      assign size_artwork = mf.size_artwork.value
+      assign alt_text = 'product.image_alt' | t: title: item.product.title
+      assign remove_label = 'cart.remove_item' | t: title: item.product.title
+    -%}
+    <li class="cart-item">
+      <a class="cart-item__media" href="{{ item.url }}" tabindex="-1" aria-hidden="true">
+        {%- if item.image -%}
+          {{ item.image | image_url: width: 240 | image_tag: width: 96, loading: 'lazy', alt: alt_text }}
+        {%- endif -%}
+      </a>
+      <div class="cart-item__info">
+        <a class="cart-item__title" href="{{ item.url }}">{{ item.product.title }}</a>
+        {%- if medium != blank or size_artwork != blank -%}
+          <p class="cart-item__meta small">
+            {{- medium -}}
+            {%- if medium != blank and size_artwork != blank %} · {% endif -%}
+            {{- size_artwork -}}
+          </p>
+        {%- endif -%}
+        {%- unless item.variant.title == 'Default Title' -%}
+          <p class="cart-item__meta small">{{ item.variant.title }}</p>
+        {%- endunless -%}
+        <a
+          class="cart-item__remove small"
+          href="{{ item.url_to_remove }}"
+          data-cart-remove
+          data-line="{{ forloop.index }}"
+          aria-label="{{ remove_label }}"
+        >{{ 'cart.remove' | t }}</a>
+      </div>
+      <p class="cart-item__price">{{ item.final_line_price | money }}</p>
+    </li>
+  {%- endfor -%}
+</ul>
