@@ -5,7 +5,7 @@
 
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: 96px; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 96px; scrollbar-gutter: stable; } /* de pagina verspringt niet als scrollen wordt geblokkeerd (intro, menu, lightbox) */
 body, h1, h2, h3, h4, p, ul, ol, figure, blockquote { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 img, svg, video { display: block; max-width: 100%; height: auto; }
@@ -376,3 +376,59 @@ a.announcement-bar__text:hover { color: var(--color-white); text-decoration: und
   .site-logo__text, .site-logo--text { font-size: 17px; letter-spacing: 0.2em; margin-right: -0.2em; }
   .site-header.is-compact .site-logo__text { font-size: 16px; }
 }
+
+/* ---------- Openingsanimatie ---------- */
+.intro { display: none; }
+
+html.has-intro { overflow: hidden; }
+html.has-intro .intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Veiligheidsnet: als het script niet start, verdwijnt de overlay na 7 seconden */
+  animation: intro-failsafe .5s ease 7s forwards;
+  touch-action: none;           /* geen scrollen onder de overlay */
+  overscroll-behavior: contain;
+  padding-inline: 16px;
+}
+html.has-intro .site-logo__text,
+html.has-intro .site-logo__image { visibility: hidden; } /* de naam 'landt' hier */
+html.has-intro { animation: intro-unlock 0s 7s forwards; }
+.intro.is-done { display: none; }
+
+.intro__bg { position: absolute; inset: 0; background: var(--color-bg); }
+
+.intro__word {
+  position: relative;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(24px, 8vw, 112px); /* 8vw: past ook op de smalste telefoons (ca. 9 em breed) */
+  letter-spacing: 0.25em;
+  margin-right: -0.25em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-ink);
+  will-change: transform;
+}
+.intro__letter { display: inline-block; opacity: 0; }
+
+.intro__tagline {
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  margin: clamp(28px, 6vw, 84px) auto 0;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: clamp(16px, 2vw, 26px);
+  color: var(--color-stone-text);
+  opacity: 0;
+}
+
+@keyframes intro-failsafe { to { opacity: 0; visibility: hidden; } }
+@keyframes intro-unlock { to { overflow: auto; } }
+@media (prefers-reduced-motion: reduce) { .intro { display: none !important; } }

@@ -31,6 +31,13 @@ Alles wat in `brand.md` tussen [haken] staat, is hier verzameld. Zoek in het the
 - [ ] 6 afbeeldingen voor de Instagram-strook
 - [ ] Logo-afbeelding (optioneel; anders tekstlogo), favicon en deelafbeelding (1200 × 630)
 
+## Nog te fotograferen
+- [ ] **Avondbos, Kustlijn en Huis in het groen** staan wel in `products.csv`, maar zijn niet in de preview omdat er nog geen foto's van zijn. Zodra ze er zijn, voeg ik ze toe.
+- [ ] Hero, atelierbeeld en Instagram-strook in de preview gebruiken nu echte schilderijen in een getekende kamer. Vervang ze door echte foto's (kamer, atelier, Instagram) in de thema-editor.
+
+## Hero-galerijwand
+- [ ] Vul bij **elk werk** het metafield *Maat werk* in (bijvoorbeeld `29,5 × 21 cm`), anders verschijnt het werk niet op de galerijwand. Controleer ook *Maat met lijst* en *Lijst*.
+
 ## Archief (later)
 - [ ] Bloemen op donkerblauw doek (2009): status Verkocht of Niet te koop, tag `archief`
 - [ ] Theepot op groen (doek): idem

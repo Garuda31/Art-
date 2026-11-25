@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2857 1786" width="2857" height="1786" preserveAspectRatio="none" role="presentation" aria-hidden="true" focusable="false">
+<defs>
+  <linearGradient id="wall" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ece6db"/><stop offset="1" stop-color="#ddd6c8"/></linearGradient>
+  <linearGradient id="floor" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#b9a98f"/><stop offset="1" stop-color="#a99879"/></linearGradient>
+</defs>
+<rect width="2857" height="1786" fill="url(#wall)"/>
+<rect y="1650" width="2857" height="136" fill="url(#floor)"/>
+<rect y="1570" width="2857" height="80" fill="#f4f1ea"/>
+<rect x="757" y="1695" width="2000" height="70" fill="#e7dfcf" opacity=".9"/>
+
+<!-- bank, 180 cm breed -->
+<rect x="977" y="850" width="1560" height="380" rx="50" fill="#7f7b73"/>
+<rect x="857" y="1030" width="140" height="540" rx="50" fill="#6c6861"/>
+<rect x="2517" y="1030" width="140" height="540" rx="50" fill="#6c6861"/>
+<rect x="977" y="1200" width="1560" height="240" rx="50" fill="#8a867e"/>
+<rect x="977" y="1200" width="780" height="240" rx="50" fill="#8f8b83"/>
+<rect x="857" y="1430" width="1800" height="140" rx="30" fill="#6c6861"/>
+<rect x="887" y="1570" width="22" height="80" fill="#4a4741"/>
+<rect x="2605" y="1570" width="22" height="80" fill="#4a4741"/>
+<rect x="1117" y="860" width="350" height="350" rx="45" fill="#c8922a" transform="rotate(-5 1292 1035)"/>
+<rect x="2057" y="880" width="320" height="320" rx="45" fill="#3d6b8c" transform="rotate(4 2217 1040)"/>
+
+<!-- staande lamp, 135 cm -->
+<rect x="296" y="300" width="9" height="1350" fill="#3a3a3a"/>
+<path d="M180 470 L420 470 L385 300 L215 300 Z" fill="#f2dfa8"/>
+<ellipse cx="300" cy="1650" rx="70" ry="9" fill="#2f2f2f"/>
+
+<!-- plant, pot 26 cm -->
+<rect x="2590" y="1390" width="200" height="260" rx="14" fill="#c7b9a0"/>
+<path d="M2690 1390 C2580 1170 2600 950 2670 810 C2720 970 2790 1170 2690 1390 Z" fill="#4f7a4a"/>
+<path d="M2690 1390 C2800 1200 2810 1030 2740 890 C2660 1030 2630 1200 2690 1390 Z" fill="#628f5a"/>
+</svg>

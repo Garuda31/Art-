@@ -196,5 +196,9 @@
     "text": "De pagina die je zoekt is verplaatst of bestaat niet meer. Bekijk de collectie of ga terug naar het begin.",
     "home": "Naar het begin",
     "collection": "Bekijk de collectie"
+  },
+  "hero": {
+    "shuffle": "Andere schilderijen",
+    "gallery_label": "Interieur met schilderijen uit de collectie, op schaal getekend"
   }
 }

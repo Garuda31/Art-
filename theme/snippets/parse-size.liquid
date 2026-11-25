@@ -1,0 +1,11 @@
+{%- comment -%}
+  Leest een maat als "29,5 × 21 cm" en geeft "breedte,hoogte" in cm terug (bijvoorbeeld "29.5,21.0").
+  Geeft "0.0,0.0" als de tekst niet te lezen is.
+  Gebruik: {%- capture dims -%}{%- render 'parse-size', text: waarde -%}{%- endcapture -%}
+{%- endcomment -%}
+{%- liquid
+  assign cleaned = text | downcase | remove: 'cm' | remove: '[' | remove: ']' | replace: '×', 'x' | replace: '*', 'x' | replace: ',', '.' | split: 'x'
+  assign dim_w = cleaned[0] | strip | times: 1.0
+  assign dim_h = cleaned[1] | strip | times: 1.0
+-%}
+{{- dim_w }},{{ dim_h -}}

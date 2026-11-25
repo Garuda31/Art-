@@ -6,7 +6,7 @@ Een custom Online Store 2.0-thema voor de webshop van Sutarwaty: een rustige, za
 
 ```
 theme/        het complete Shopify-thema (dit upload je)
-preview/      voorbeeldweergave (home, collectie, 10 productpagina's, winkelmand) met placeholder-kunst
+preview/      voorbeeldweergave (home, collectie, 8 productpagina's, winkelmand) met placeholder-kunst
 photos/       jouw foto's per werk (zie brand.md, sectie 6)
 products.csv  importbestand met de 10 werken van Collectie I
 brand.md      huisstijl en teksten (bron voor de bouw)
@@ -124,6 +124,8 @@ Voorwaarden en privacy maak je via de beleidspagina's (stap 6) of als gewone pag
 **Thema-editor** (Online winkel → Thema's → Aanpassen):
 - *Themainstellingen:* logo (anders tekstlogo), favicon, deelafbeelding, WhatsApp-nummer, KVK-nummer, betaalicoontjes en het nieuwsbriefvenster.
 - *Homepage:* hero-foto, atelierfoto, citaat en de zes Instagram-afbeeldingen.
+- *Homepage-hero met galerijwand:* de hero toont 4 schilderijen naast elkaar in een kamer, op schaal. De knop "Andere schilderijen" kiest een nieuwe willekeurige selectie. De maten komen uit de metafields: **Maat werk** (verplicht, anders verschijnt het werk niet), **Maat met lijst** en **Lijst** (bepaalt de lijstkleur: "hout" = houten lijst, anders zwart). Kies de collectie en het aantal (2–5) in de sectie-instellingen. Elk schilderij is een link naar het werk.
+- *Openingsanimatie* (Themainstellingen): een leeg scherm waarop de naam verschijnt en naar het logo in de header vliegt. Aan of uit te zetten. Standaard alleen op de homepage en één keer per bezoek. Wordt overgeslagen bij 'minder beweging' (toegankelijkheid) en bezoekers kunnen klikken om hem over te slaan. In de preview speel je hem opnieuw af met `?intro=1` achter de link.
 - Op de collectiepagina stel je filters en sortering in via de app **Search & Discovery** (gratis, van Shopify).
 
 ## 5. Filters op formaat en oriëntatie

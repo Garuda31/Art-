@@ -28,12 +28,46 @@
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
     </script>
+
+    {%- liquid
+      assign show_intro = false
+      if settings.intro_enabled
+        if request.page_type == 'index' or settings.intro_all_pages
+          assign show_intro = true
+        endif
+      endif
+    -%}
+    {%- if show_intro -%}
+      <script>
+        (function () {
+          try {
+            var root = document.documentElement;
+            var forced = /[?&]intro=1/.test(window.location.search);
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            if (!forced && window.sessionStorage.getItem('sutarwaty_intro_seen') === '1') return;
+            root.classList.add('has-intro');
+          } catch (e) { /* zonder opslag: geen intro */ }
+        })();
+      </script>
+    {%- endif -%}
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
 
     {{ content_for_header }}
   </head>
 
   <body class="template-{{ template.name | handle }}{% if settings.animations %} has-animations{% endif %}">
+    {%- if show_intro -%}
+      <div class="intro" data-intro aria-hidden="true">
+        <div class="intro__bg" data-intro-bg></div>
+        <p class="intro__word" data-intro-word>
+          {%- assign intro_letters = shop.name | upcase | split: '' -%}
+          {%- for letter in intro_letters -%}<span class="intro__letter">{{ letter }}</span>{%- endfor -%}
+        </p>
+        <p class="intro__tagline" data-intro-tagline>{{ 'footer.tagline' | t }}</p>
+      </div>
+      <script src="{{ 'intro.js' | asset_url }}" defer></script>
+    {%- endif -%}
+
     <a class="skip-link" href="#main">{{ 'general.skip_to_content' | t }}</a>
 
     {% sections 'header-group' %}

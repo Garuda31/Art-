@@ -10,11 +10,36 @@
   {
     "name": "Kleuren",
     "settings": [
-      { "type": "color", "id": "color_bg", "label": "Achtergrond (Doekwit)", "default": "#F7F5F0" },
-      { "type": "color", "id": "color_ink", "label": "Tekst en knoppen (Inkt)", "default": "#1A1A1A" },
-      { "type": "color", "id": "color_stone", "label": "Lijnen en subtekst (Steengrijs)", "default": "#8A8680" },
-      { "type": "color", "id": "color_accent", "label": "Accent (Kurkuma)", "default": "#C8922A" },
-      { "type": "color", "id": "color_white", "label": "Wit (kaarten en panelen)", "default": "#FFFFFF" }
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Achtergrond (Doekwit)",
+        "default": "#F7F5F0"
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Tekst en knoppen (Inkt)",
+        "default": "#1A1A1A"
+      },
+      {
+        "type": "color",
+        "id": "color_stone",
+        "label": "Lijnen en subtekst (Steengrijs)",
+        "default": "#8A8680"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent (Kurkuma)",
+        "default": "#C8922A"
+      },
+      {
+        "type": "color",
+        "id": "color_white",
+        "label": "Wit (kaarten en panelen)",
+        "default": "#FFFFFF"
+      }
     ]
   },
   {
@@ -26,54 +51,150 @@
         "label": "Logo-afbeelding",
         "info": "Optioneel. Zonder afbeelding wordt de winkelnaam als tekstlogo getoond."
       },
-      { "type": "range", "id": "logo_width", "label": "Breedte logo-afbeelding", "min": 80, "max": 320, "step": 10, "unit": "px", "default": 180 },
-      { "type": "image_picker", "id": "favicon", "label": "Favicon", "info": "Vierkant, minimaal 32 × 32 px." },
-      { "type": "image_picker", "id": "share_image", "label": "Standaard deelafbeelding (Open Graph)", "info": "Aanbevolen: 1200 × 630 px." }
+      {
+        "type": "range",
+        "id": "logo_width",
+        "label": "Breedte logo-afbeelding",
+        "min": 80,
+        "max": 320,
+        "step": 10,
+        "unit": "px",
+        "default": 180
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Vierkant, minimaal 32 × 32 px."
+      },
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Standaard deelafbeelding (Open Graph)",
+        "info": "Aanbevolen: 1200 × 630 px."
+      }
     ]
   },
   {
     "name": "Opmaak",
     "settings": [
-      { "type": "range", "id": "page_width", "label": "Maximale paginabreedte", "min": 1200, "max": 1800, "step": 20, "unit": "px", "default": 1400 },
+      {
+        "type": "range",
+        "id": "page_width",
+        "label": "Maximale paginabreedte",
+        "min": 1200,
+        "max": 1800,
+        "step": 20,
+        "unit": "px",
+        "default": 1400
+      },
       {
         "type": "select",
         "id": "grid_mobile_columns",
         "label": "Kolommen in het werkenraster op mobiel",
         "options": [
-          { "value": "1", "label": "1 kolom" },
-          { "value": "2", "label": "2 kolommen" }
+          {
+            "value": "1",
+            "label": "1 kolom"
+          },
+          {
+            "value": "2",
+            "label": "2 kolommen"
+          }
         ],
         "default": "2"
       },
-      { "type": "checkbox", "id": "animations", "label": "Fade-in animaties bij scrollen", "default": true }
+      {
+        "type": "checkbox",
+        "id": "animations",
+        "label": "Fade-in animaties bij scrollen",
+        "default": true
+      }
     ]
   },
   {
     "name": "Contact en social",
     "settings": [
-      { "type": "text", "id": "contact_email", "label": "E-mailadres", "default": "atelier@sutarwaty.com" },
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "E-mailadres",
+        "default": "atelier@sutarwaty.com"
+      },
       {
         "type": "text",
         "id": "whatsapp_number",
         "label": "WhatsApp-nummer",
         "info": "Internationaal formaat zonder + of spaties, bijvoorbeeld 31612345678."
       },
-      { "type": "text", "id": "instagram_handle", "label": "Instagram-gebruikersnaam (zonder @)", "default": "sutarwaty" }
+      {
+        "type": "text",
+        "id": "instagram_handle",
+        "label": "Instagram-gebruikersnaam (zonder @)",
+        "default": "sutarwaty"
+      }
     ]
   },
   {
     "name": "Bedrijfsgegevens en betaling",
     "settings": [
-      { "type": "text", "id": "kvk_number", "label": "KVK-nummer" },
-      { "type": "checkbox", "id": "show_payment_icons", "label": "Betaalicoontjes tonen in de footer", "default": true }
+      {
+        "type": "text",
+        "id": "kvk_number",
+        "label": "KVK-nummer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "label": "Betaalicoontjes tonen in de footer",
+        "default": true
+      }
     ]
   },
   {
     "name": "Nieuwsbriefvenster",
     "settings": [
-      { "type": "checkbox", "id": "newsletter_popup_enabled", "label": "Nieuwsbriefvenster inschakelen", "default": true },
-      { "type": "range", "id": "newsletter_popup_delay", "label": "Tonen na", "min": 5, "max": 120, "step": 5, "unit": "s", "default": 25 },
-      { "type": "checkbox", "id": "newsletter_popup_exit_intent", "label": "Ook tonen bij exit-intent (desktop)", "default": true }
+      {
+        "type": "checkbox",
+        "id": "newsletter_popup_enabled",
+        "label": "Nieuwsbriefvenster inschakelen",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "newsletter_popup_delay",
+        "label": "Tonen na",
+        "min": 5,
+        "max": 120,
+        "step": 5,
+        "unit": "s",
+        "default": 25
+      },
+      {
+        "type": "checkbox",
+        "id": "newsletter_popup_exit_intent",
+        "label": "Ook tonen bij exit-intent (desktop)",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Openingsanimatie",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "intro_enabled",
+        "label": "Openingsanimatie tonen",
+        "default": true,
+        "info": "Een leeg scherm waarop de naam verschijnt en naar het logo in de header vliegt. Eén keer per bezoek en niet bij 'minder beweging'."
+      },
+      {
+        "type": "checkbox",
+        "id": "intro_all_pages",
+        "label": "Ook tonen als een bezoeker op een andere pagina binnenkomt",
+        "default": false,
+        "info": "Standaard alleen op de homepage, zodat bezoekers die direct op een werk landen niet wachten."
+      }
     ]
   }
 ]
