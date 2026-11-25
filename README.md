@@ -6,7 +6,7 @@ Een custom Online Store 2.0-thema voor de webshop van Sutarwaty: een rustige, za
 
 ```
 theme/        het complete Shopify-thema (dit upload je)
-preview/      statische voorbeeldweergave (home, collectie, product) met placeholder-kunst
+preview/      voorbeeldweergave (home, collectie, 10 productpagina's, winkelmand) met placeholder-kunst
 photos/       jouw foto's per werk (zie brand.md, sectie 6)
 products.csv  importbestand met de 10 werken van Collectie I
 brand.md      huisstijl en teksten (bron voor de bouw)
@@ -21,7 +21,7 @@ Voorbeeldweergave bekijken (vanuit de projectmap):
 python -m http.server 8765
 ```
 
-Open daarna `http://localhost:8765/preview/index.html`.
+Open daarna `http://localhost:8765/preview/index.html`. De winkelmand werkt in de preview met voorbeeldgegevens in je browser, zodat je het hele koopproces kunt uitproberen. Afrekenen gebeurt in de echte winkel.
 
 ---
 
@@ -154,7 +154,18 @@ Voorwaarden en privacy maak je via de beleidspagina's (stap 6) of als gewone pag
 - **Contrast:** voor leesbare tekst gebruikt het thema een donkerdere afgeleide van het steengrijs (`--color-stone-text`) en van het kurkuma (`--color-accent-deep`) voor hover en focus. Het originele steengrijs blijft voor lijnen.
 - **JavaScript per sectie:** menu en fade-in (`theme.js`, overal), winkelmand (`cart.js`), galerij en lightbox (`product-gallery.js`), filters (`collection.js`), contact (`contact.js`) en het nieuwsbriefvenster (`newsletter-popup.js`).
 
-## 8. Bekende beperkingen
+## 8. Conversie-onderdelen
+
+- **Koopknop met duidelijke status:** "In winkelmand" → "Toevoegen…" → "Toegevoegd ✓" → "Bekijk winkelmand". Elk werk is uniek, dus een tweede klik opent de winkelmand in plaats van nogmaals toe te voegen.
+- **Cart drawer:** na het toevoegen schuift de winkelmand open, met subtotaal, "gratis verzekerde verzending", afrekenknop en betaalmethoden. Geen omweg via een aparte pagina.
+- **Sticky koopbalk op mobiel:** titel, prijs en "In winkelmand" blijven in beeld zodra je voorbij de hoofdknop scrolt.
+- **Snelle afrekenknop** (Shop Pay, Apple Pay, Google Pay) onder de koopknop op de productpagina en op de cartpagina. Verschijnt automatisch zodra die methoden in Shopify actief zijn. Uit te zetten in de thema-editor (sectie Productpagina).
+- **Cartpagina:** afrekenknop met slotje, betaalicoontjes, 14 dagen bedenktijd, certificaat van echtheid, en een hulpblok met WhatsApp of e-mail.
+- **Lege winkelmand** is geen doodlopende weg: er staan direct 2–3 beschikbare werken onder. Onder de regels op de cartpagina staat "Misschien ook mooi". Bron is de collectie `uitgelicht`, anders alle werken.
+- **Eerlijke schaarste:** "Uniek origineel — 1 beschikbaar" overal waar een werk staat, zonder nep-timers.
+- Werk verkocht terwijl iemand het toevoegt? De koper krijgt een heldere melding bij de knop.
+
+## 9. Bekende beperkingen
 
 - **Verkocht onderaan** werkt per pagina. De standaard is 48 werken per pagina. Heb je meer, dan kan een verkocht werk op de eerste pagina staan.
 - **Zoeken** heeft geen voorspellende suggesties.
@@ -162,7 +173,7 @@ Voorwaarden en privacy maak je via de beleidspagina's (stap 6) of als gewone pag
 - **Het nieuwsbriefvenster** onthoudt per browser (localStorage) dat het getoond is.
 - **Lighthouse** is niet gemeten door de bouwer. Draai het zelf op de preview-URL van `shopify theme dev` (Chrome → DevTools → Lighthouse, mobiel). Doelen: Performance ≥ 85, Accessibility ≥ 95, SEO ≥ 95.
 
-## 9. Snelle controle na het uploaden
+## 10. Snelle controle na het uploaden
 
 - Elk werk toont de juiste metafields, het label "Uniek origineel — 1 beschikbaar", of "Verkocht" bij voorraad 0.
 - De schaalindicatie verschijnt zodra een maat als `breedte × hoogte cm` is ingevuld.

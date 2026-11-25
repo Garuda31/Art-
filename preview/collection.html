@@ -7,11 +7,15 @@
 --color-canvas:color-mix(in srgb,var(--color-white) 55%,var(--color-bg));--color-ink-hover:color-mix(in srgb,var(--color-ink) 82%,var(--color-bg));
 --font-heading:'Cormorant Garamond',Georgia,serif;--font-body:'Inter',system-ui,sans-serif;--page-width:1400px;--grid-mobile-columns:2;--logo-width:180px}
 .preview-note{background:#fff7e0;border-bottom:1px solid #e3c878;font-size:12px;text-align:center;padding:6px 12px;color:#6b5a1f}
-</style><link rel="stylesheet" href="../theme/assets/base.css"><link rel="stylesheet" href="../theme/assets/collection.css">
+</style><style>
+.preview-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:200;max-width:min(520px,calc(100vw - 32px));background:#1a1a1a;color:#fff;padding:14px 18px;font-size:14px;line-height:1.45;border-radius:2px}
+.preview-toast[hidden]{display:none}
+.pp-badge{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:24px;padding:0 7px;border:1px solid var(--color-stone);border-radius:3px;background:#fff;font-size:10px;font-weight:500;letter-spacing:.02em}
+</style><link rel="stylesheet" href="../theme/assets/base.css"><link rel="stylesheet" href="../theme/assets/collection.css"><link rel="stylesheet" href="../theme/assets/cart.css"><link rel="stylesheet" href="../theme/assets/collection.css">
 <script>document.documentElement.className=document.documentElement.className.replace('no-js','js')</script>
-<script src="../theme/assets/theme.js" defer></script></head><body class="has-animations">
+<script src="../theme/assets/theme.js" defer></script><script src="works.js"></script><script src="preview-cart.js" defer></script></head><body class="has-animations">
 <a class="skip-link" href="#main">Ga naar de inhoud</a>
-<div class="preview-note">Statische voorbeeldweergave met placeholder-kunst. De echte pagina's worden door Shopify uit Liquid gerenderd.</div>
+<div class="preview-note">Voorbeeldweergave met placeholder-kunst. De winkelmand werkt hier met opgeslagen voorbeeldgegevens; afrekenen gebeurt in de echte winkel via Shopify.</div>
 <div class="announcement-bar"><p class="announcement-bar__text">Gratis verzekerde verzending binnen Nederland</p></div>
 <header class="site-header" data-site-header><div class="site-header__inner container">
 <button type="button" class="icon-button site-header__toggle" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
@@ -21,7 +25,9 @@
 <li><a href="collection.html">Collectie</a></li><li><a href="index.html#over">Over</a></li><li><a href="index.html#contact">Contact</a></li></ul></nav>
 <a class="site-logo" href="index.html"><span class="site-logo__text">Sutarwaty</span></a>
 <div class="site-header__actions"><a class="icon-button" href="#"><span class="visually-hidden">Zoeken</span><svg class="icon icon--search" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
-<a class="icon-button site-header__cart" href="#"><span class="visually-hidden">Winkelmand</span><svg class="icon icon--cart" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg></a></div></div></header>
+<a class="icon-button site-header__cart" href="cart.html" data-cart-link><span class="visually-hidden" data-cart-label>Winkelmand</span><svg class="icon icon--cart" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span class="cart-count" data-cart-count aria-hidden="true" hidden>0</span></a></div></div></header>
+<dialog class="cart-drawer" data-cart-drawer aria-label="Winkelmand"><div class="cart-drawer__inner"><header class="cart-drawer__header"><h2 class="h3">Winkelmand</h2>
+<button type="button" class="icon-button" data-cart-close aria-label="Winkelmand sluiten"><svg class="icon icon--close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header><div class="cart-drawer__body" data-cart-drawer-body></div></div></dialog>
 <main id="main" tabindex="-1"><div class="collection section--tight"><div class="container">
 <header class="collection__header"><h1 class="collection__title">Collectie I — Kleur in beweging</h1><div class="collection__intro rte"><p>Tien unieke werken in acryl, vol kleur en patroon.</p></div></header>
 <form class="collection__toolbar" onsubmit="return false"><div class="collection__toolbar-row"><details class="filters-panel"><summary class="button button--secondary">Filteren</summary>
@@ -29,35 +35,35 @@
 <fieldset class="filter"><legend class="filter__legend">Prijs</legend><div class="filter__price"><label><span class="small">Van</span><input class="field" type="number" placeholder="0"></label><label><span class="small">Tot</span><input class="field" type="number" placeholder="245"></label></div></fieldset></div></details>
 <p class="collection__count small muted">10 werken</p><div class="collection__sort"><label class="small muted" for="s">Sorteren</label><select class="field field--select" id="s"><option>Uitgelicht</option><option>Prijs, laag naar hoog</option><option>Nieuwste</option></select></div></div></form>
 <ul class="product-grid" role="list"><li class="product-grid__item" data-reveal><article class="product-card"><div class="product-card__media">
-<img class="product-card__image" src="img/wervelingen.svg" alt="Wervelingen — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur.svg" alt="" loading="lazy"></div>
-<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product.html">Wervelingen</a></h3>
+<img class="product-card__image" src="img/wervelingen.svg" alt="Wervelingen — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur-wervelingen.svg" alt="" loading="lazy"></div>
+<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product-wervelingen.html">Wervelingen</a></h3>
 <p class="product-card__meta small">Acryl op papier · 30 × 40 cm</p><p class="product-card__price"><span class="price"><span class="price__current">€245,00</span></span></p></div></article></li><li class="product-grid__item" data-reveal><article class="product-card"><div class="product-card__media">
-<img class="product-card__image" src="img/zonnegeel.svg" alt="Zonnegeel — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur.svg" alt="" loading="lazy"></div>
-<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product.html">Zonnegeel</a></h3>
+<img class="product-card__image" src="img/zonnegeel.svg" alt="Zonnegeel — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur-zonnegeel.svg" alt="" loading="lazy"></div>
+<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product-zonnegeel.html">Zonnegeel</a></h3>
 <p class="product-card__meta small">Acryl op papier · 30 × 40 cm</p><p class="product-card__price"><span class="price"><span class="price__current">€245,00</span></span></p></div></article></li><li class="product-grid__item" data-reveal><article class="product-card"><div class="product-card__media">
-<img class="product-card__image" src="img/regenboogstroom.svg" alt="Regenboogstroom — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur.svg" alt="" loading="lazy"></div>
-<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product.html">Regenboogstroom</a></h3>
+<img class="product-card__image" src="img/regenboogstroom.svg" alt="Regenboogstroom — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur-regenboogstroom.svg" alt="" loading="lazy"></div>
+<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product-regenboogstroom.html">Regenboogstroom</a></h3>
 <p class="product-card__meta small">Acryl op papier · 30 × 40 cm</p><p class="product-card__price"><span class="price"><span class="price__current">€245,00</span></span></p></div></article></li><li class="product-grid__item" data-reveal><article class="product-card"><div class="product-card__media">
-<img class="product-card__image" src="img/stilleven-op-geel.svg" alt="Stilleven op geel — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur.svg" alt="" loading="lazy"></div>
-<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product.html">Stilleven op geel</a></h3>
+<img class="product-card__image" src="img/stilleven-op-geel.svg" alt="Stilleven op geel — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur-stilleven-op-geel.svg" alt="" loading="lazy"></div>
+<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product-stilleven-op-geel.html">Stilleven op geel</a></h3>
 <p class="product-card__meta small">Acryl op papier · 30 × 40 cm</p><p class="product-card__price"><span class="price"><span class="price__current">€245,00</span></span></p></div></article></li><li class="product-grid__item" data-reveal><article class="product-card"><div class="product-card__media">
-<img class="product-card__image" src="img/avondbos.svg" alt="Avondbos — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur.svg" alt="" loading="lazy"></div>
-<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product.html">Avondbos</a></h3>
+<img class="product-card__image" src="img/avondbos.svg" alt="Avondbos — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur-avondbos.svg" alt="" loading="lazy"></div>
+<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product-avondbos.html">Avondbos</a></h3>
 <p class="product-card__meta small">Acryl op papier · 30 × 40 cm</p><p class="product-card__price"><span class="price"><span class="price__current">€245,00</span></span></p></div></article></li><li class="product-grid__item" data-reveal><article class="product-card"><div class="product-card__media">
-<img class="product-card__image" src="img/drie-gezichten.svg" alt="Drie gezichten — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur.svg" alt="" loading="lazy"></div>
-<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product.html">Drie gezichten</a></h3>
+<img class="product-card__image" src="img/drie-gezichten.svg" alt="Drie gezichten — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur-drie-gezichten.svg" alt="" loading="lazy"></div>
+<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product-drie-gezichten.html">Drie gezichten</a></h3>
 <p class="product-card__meta small">Acryl op papier · 30 × 40 cm</p><p class="product-card__price"><span class="price"><span class="price__current">€245,00</span></span></p></div></article></li><li class="product-grid__item" data-reveal><article class="product-card"><div class="product-card__media">
-<img class="product-card__image" src="img/tuin-in-bloei.svg" alt="Tuin in bloei — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur.svg" alt="" loading="lazy"></div>
-<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product.html">Tuin in bloei</a></h3>
+<img class="product-card__image" src="img/tuin-in-bloei.svg" alt="Tuin in bloei — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur-tuin-in-bloei.svg" alt="" loading="lazy"></div>
+<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product-tuin-in-bloei.html">Tuin in bloei</a></h3>
 <p class="product-card__meta small">Acryl op papier · 30 × 40 cm</p><p class="product-card__price"><span class="price"><span class="price__current">€210,00</span></span></p></div></article></li><li class="product-grid__item" data-reveal><article class="product-card"><div class="product-card__media">
-<img class="product-card__image" src="img/kustlijn.svg" alt="Kustlijn — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur.svg" alt="" loading="lazy"></div>
-<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product.html">Kustlijn</a></h3>
+<img class="product-card__image" src="img/kustlijn.svg" alt="Kustlijn — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur-kustlijn.svg" alt="" loading="lazy"></div>
+<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product-kustlijn.html">Kustlijn</a></h3>
 <p class="product-card__meta small">Acryl op papier · 30 × 40 cm</p><p class="product-card__price"><span class="price"><span class="price__current">€210,00</span></span></p></div></article></li><li class="product-grid__item" data-reveal><article class="product-card"><div class="product-card__media">
-<img class="product-card__image" src="img/huis-in-het-groen.svg" alt="Huis in het groen — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur.svg" alt="" loading="lazy"></div>
-<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product.html">Huis in het groen</a></h3>
+<img class="product-card__image" src="img/huis-in-het-groen.svg" alt="Huis in het groen — acryl schilderij van Sutarwaty" width="800" height="1000"><img class="product-card__image product-card__image--hover" src="img/interieur-huis-in-het-groen.svg" alt="" loading="lazy"></div>
+<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product-huis-in-het-groen.html">Huis in het groen</a></h3>
 <p class="product-card__meta small">Acryl op papier · 30 × 40 cm</p><p class="product-card__price"><span class="price"><span class="price__current">€245,00</span></span></p></div></article></li><li class="product-grid__item" data-reveal><article class="product-card is-sold"><div class="product-card__media">
 <img class="product-card__image" src="img/mozaiek.svg" alt="Mozaïek — acryl schilderij van Sutarwaty" width="800" height="1000"><span class="product-card__badge">Verkocht</span></div>
-<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product.html">Mozaïek</a></h3>
+<div class="product-card__info"><h3 class="product-card__title"><a class="product-card__link" href="product-mozaiek.html">Mozaïek</a></h3>
 <p class="product-card__meta small">Acryl op papier · 30 × 40 cm</p></div></article></li></ul></div></div></main>
 <footer class="site-footer"><div class="container"><div class="site-footer__grid">
 <div class="site-footer__col site-footer__brand"><p class="site-logo site-logo--text">Sutarwaty</p><p class="site-footer__tagline">Kleur als taal</p></div>

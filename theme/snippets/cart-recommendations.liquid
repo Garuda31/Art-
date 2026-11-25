@@ -1,0 +1,30 @@
+{%- comment -%}
+  Aanbevolen werken (lege winkelmand of onder de regels).
+  Parameters: limit (aantal, standaard 3)
+  Bron: collectie 'uitgelicht', anders alle werken. Alleen beschikbare werken die nog niet in de winkelmand zitten.
+{%- endcomment -%}
+{%- liquid
+  assign max_items = limit | default: 3
+  assign source = collections['uitgelicht']
+  if source == blank or source.products_count == 0
+    assign source = collections['all']
+  endif
+  assign shown = 0
+-%}
+{%- if source != blank and source.products_count > 0 -%}
+  <section class="cart-recs" aria-labelledby="cart-recs-heading">
+    <h2 class="cart-recs__heading h3" id="cart-recs-heading">{{ 'cart.recommend_heading' | t }}</h2>
+    <ul class="cart-recs__grid" role="list">
+      {%- for item in source.products limit: 12 -%}
+        {%- assign already = false -%}
+        {%- for line in cart.items -%}
+          {%- if line.product_id == item.id -%}{%- assign already = true -%}{%- endif -%}
+        {%- endfor -%}
+        {%- if item.available and already == false and shown < max_items -%}
+          {%- assign shown = shown | plus: 1 -%}
+          <li>{% render 'product-card', product: item, sizes: '(min-width: 900px) 22vw, 45vw' %}</li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  </section>
+{%- endif -%}

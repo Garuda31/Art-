@@ -1,7 +1,7 @@
 {%- comment -%}
   Lijn-iconen (24x24, 1.5px streek).
   Gebruik: {% render 'icon', name: 'search' %}
-  Namen: search, cart, menu, close, plus, minus, arrow-right, instagram, whatsapp, mail
+  Namen: lock, search, cart, menu, close, plus, minus, arrow-right, instagram, whatsapp, mail
 {%- endcomment -%}
 <svg class="icon icon--{{ name }}{% if class != blank %} {{ class }}{% endif %}" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
   {%- case name -%}
@@ -31,6 +31,8 @@
       <path d="M4 12a8 8 0 1 0 2.6-5.9"/><path d="M4 4v4.5h4.5"/>
     {%- when 'certificate' -%}
       <path d="M4 4h16v12H4z"/><path d="M8 9h8M8 12h4"/><path d="m14.5 16-.8 5 2.8-1.6 2.8 1.6-.8-5"/>
+    {%- when 'lock' -%}
+      <rect x="5" y="10.5" width="14" height="9.5" rx="1"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>
     {%- when 'mail' -%}
       <rect x="3.5" y="5.5" width="17" height="13" rx="1"/><path d="m4 7 8 6 8-6"/>
   {%- endcase -%}

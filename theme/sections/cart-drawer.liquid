@@ -1,3 +1,4 @@
+{{ 'collection.css' | asset_url | stylesheet_tag }}
 {{ 'cart.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'cart.js' | asset_url }}" defer></script>
 
@@ -19,12 +20,15 @@
     </header>
 
     <div class="cart-drawer__body" data-cart-drawer-body>
-      <span hidden data-cart-count-source="{{ cart.item_count }}" data-cart-label-source="{{ 'header.cart_count' | t: count: cart.item_count }}"></span>
+      {%- capture product_ids -%},{% for item in cart.items %}{{ item.product_id }},{% endfor %}{%- endcapture -%}
+      <span hidden data-cart-count-source="{{ cart.item_count }}" data-cart-label-source="{{ 'header.cart_count' | t: count: cart.item_count }}" data-cart-product-ids="{{ product_ids }}"></span>
       {%- if cart.item_count == 0 -%}
         <div class="cart-empty">
-          <p>{{ 'cart.empty' | t }}</p>
-          <a class="button button--secondary" href="{{ routes.all_products_url }}">{{ 'cart.continue' | t }}</a>
+          <p class="cart-empty__title h3">{{ 'cart.empty' | t }}</p>
+          <p class="muted">{{ 'cart.empty_text' | t }}</p>
+          <a class="button" href="{{ routes.all_products_url }}">{{ 'cart.continue' | t }}</a>
         </div>
+        {% render 'cart-recommendations', limit: 2 %}
       {%- else -%}
         <div class="cart-drawer__items">
           {% render 'cart-items' %}

@@ -1,0 +1,39 @@
+<!doctype html><html class="no-js" lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Winkelmand – Sutarwaty (preview)</title><style>
+@font-face{font-family:'Cormorant Garamond';font-weight:500 600;font-display:swap;src:url('../theme/assets/cormorant-garamond-latin.woff2') format('woff2')}
+@font-face{font-family:'Inter';font-weight:400 500;font-display:swap;src:url('../theme/assets/inter-latin.woff2') format('woff2')}
+:root{--color-bg:#F7F5F0;--color-ink:#1A1A1A;--color-stone:#8A8680;--color-accent:#C8922A;--color-white:#FFFFFF;
+--color-stone-text:color-mix(in srgb,var(--color-stone) 68%,var(--color-ink));--color-accent-deep:color-mix(in srgb,var(--color-accent) 60%,var(--color-ink));
+--color-canvas:color-mix(in srgb,var(--color-white) 55%,var(--color-bg));--color-ink-hover:color-mix(in srgb,var(--color-ink) 82%,var(--color-bg));
+--font-heading:'Cormorant Garamond',Georgia,serif;--font-body:'Inter',system-ui,sans-serif;--page-width:1400px;--grid-mobile-columns:2;--logo-width:180px}
+.preview-note{background:#fff7e0;border-bottom:1px solid #e3c878;font-size:12px;text-align:center;padding:6px 12px;color:#6b5a1f}
+</style><style>
+.preview-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:200;max-width:min(520px,calc(100vw - 32px));background:#1a1a1a;color:#fff;padding:14px 18px;font-size:14px;line-height:1.45;border-radius:2px}
+.preview-toast[hidden]{display:none}
+.pp-badge{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:24px;padding:0 7px;border:1px solid var(--color-stone);border-radius:3px;background:#fff;font-size:10px;font-weight:500;letter-spacing:.02em}
+</style><link rel="stylesheet" href="../theme/assets/base.css"><link rel="stylesheet" href="../theme/assets/collection.css"><link rel="stylesheet" href="../theme/assets/cart.css">
+<script>document.documentElement.className=document.documentElement.className.replace('no-js','js')</script>
+<script src="../theme/assets/theme.js" defer></script><script src="works.js"></script><script src="preview-cart.js" defer></script></head><body class="has-animations" data-cart-page>
+<a class="skip-link" href="#main">Ga naar de inhoud</a>
+<div class="preview-note">Voorbeeldweergave met placeholder-kunst. De winkelmand werkt hier met opgeslagen voorbeeldgegevens; afrekenen gebeurt in de echte winkel via Shopify.</div>
+<div class="announcement-bar"><p class="announcement-bar__text">Gratis verzekerde verzending binnen Nederland</p></div>
+<header class="site-header" data-site-header><div class="site-header__inner container">
+<button type="button" class="icon-button site-header__toggle" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+<span class="visually-hidden" data-label-open>Menu</span><span class="visually-hidden" data-label-close hidden>Menu sluiten</span>
+<span data-icon-open><svg class="icon icon--menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></span><span data-icon-close hidden><svg class="icon icon--close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></span></button>
+<nav id="site-nav" class="site-nav" aria-label="Hoofdmenu" data-site-nav><ul class="site-nav__list">
+<li><a href="collection.html">Collectie</a></li><li><a href="index.html#over">Over</a></li><li><a href="index.html#contact">Contact</a></li></ul></nav>
+<a class="site-logo" href="index.html"><span class="site-logo__text">Sutarwaty</span></a>
+<div class="site-header__actions"><a class="icon-button" href="#"><span class="visually-hidden">Zoeken</span><svg class="icon icon--search" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
+<a class="icon-button site-header__cart" href="cart.html" data-cart-link><span class="visually-hidden" data-cart-label>Winkelmand</span><svg class="icon icon--cart" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span class="cart-count" data-cart-count aria-hidden="true" hidden>0</span></a></div></div></header>
+<dialog class="cart-drawer" data-cart-drawer aria-label="Winkelmand"><div class="cart-drawer__inner"><header class="cart-drawer__header"><h2 class="h3">Winkelmand</h2>
+<button type="button" class="icon-button" data-cart-close aria-label="Winkelmand sluiten"><svg class="icon icon--close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header><div class="cart-drawer__body" data-cart-drawer-body></div></div></dialog>
+<main id="main" tabindex="-1"><section class="section cart-page"><div class="container"><h1 class="cart-page__title">Winkelmand</h1><div data-cart-page-content></div></div></section></main>
+<footer class="site-footer"><div class="container"><div class="site-footer__grid">
+<div class="site-footer__col site-footer__brand"><p class="site-logo site-logo--text">Sutarwaty</p><p class="site-footer__tagline">Kleur als taal</p></div>
+<nav class="site-footer__col"><h2 class="site-footer__heading">Winkel</h2><ul class="site-footer__list"><li><a href="collection.html">Collectie</a></li><li><a href="#">Archief</a></li></ul></nav>
+<nav class="site-footer__col"><h2 class="site-footer__heading">Info</h2><ul class="site-footer__list"><li><a href="#">Over Sutarwaty</a></li><li><a href="#">Veelgestelde vragen</a></li><li><a href="#">Verzending &amp; retour</a></li><li><a href="#">Contact</a></li></ul></nav>
+<div class="site-footer__col"><h2 class="site-footer__heading">Zie nieuwe werken als eerste</h2><p class="site-footer__text">Een paar keer per jaar verschijnt een nieuwe kleine collectie. Inschrijvers zien hem een dag eerder.</p>
+<form class="newsletter-form" onsubmit="return false"><div class="newsletter-form__row"><input type="email" class="field" placeholder="Je e-mailadres"><button type="submit" class="button">Inschrijven</button></div><p class="newsletter-form__note small">Je kunt je op elk moment uitschrijven.</p></form></div></div>
+<div class="site-footer__bottom"><ul class="site-footer__legal"><li>© 2026 Sutarwaty</li><li>KVK [nummer]</li><li><a href="#">Voorwaarden</a></li><li><a href="#">Privacy</a></li>
+<li><a href="#" class="site-footer__social"><svg class="icon icon--instagram" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.5"/><circle cx="16.8" cy="7.2" r=".6" fill="currentColor"/></svg><span>Instagram</span></a></li></ul></div></div></footer></body></html>

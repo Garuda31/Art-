@@ -105,7 +105,11 @@
     "zoom_toggle": "In- of uitzoomen",
     "lightbox_label": "Vergrote afbeelding",
     "image_counter": "{{ current }} van {{ total }}",
-    "option_label": "Kies een optie"
+    "option_label": "Kies een optie",
+    "added": "Toegevoegd ✓",
+    "view_cart": "Bekijk winkelmand",
+    "one_of_one": "Slechts 1 beschikbaar",
+    "buy_now_note": "Snel afrekenen"
   },
   "scale": {
     "heading": "Zo hangt het aan de muur",
@@ -161,7 +165,14 @@
     "close": "Winkelmand sluiten",
     "error": "Dit werk kan niet worden toegevoegd. Misschien is het zojuist verkocht.",
     "adding": "Toevoegen…",
-    "unique_note": "Uniek origineel"
+    "unique_note": "Uniek origineel — 1 beschikbaar",
+    "recommend_heading": "Misschien ook mooi",
+    "help": "Vragen voor je afrekent?",
+    "help_text": "Ik help je graag, ook met de maat of kleur op jouw muur.",
+    "empty_text": "Ontdek de originele werken en vind er een dat bij jouw muur past.",
+    "payment_methods": "Betaalmethoden",
+    "free_shipping": "Gratis verzekerde verzending (NL)",
+    "checkout_secure": "Veilig afrekenen"
   },
   "popup": {
     "label": "Nieuwsbrief",

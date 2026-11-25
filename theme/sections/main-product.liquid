@@ -1,6 +1,7 @@
 {{ 'collection.css' | asset_url | stylesheet_tag }}
 {{ 'product.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'product-gallery.js' | asset_url }}" defer></script>
+<script src="{{ 'sticky-atc.js' | asset_url }}" defer></script>
 
 {%- liquid
   assign variant = product.selected_or_first_available_variant
@@ -25,6 +26,17 @@
     assign can_buy = true
   endunless
 
+  assign in_cart = false
+  for item in cart.items
+    if item.product_id == product.id
+      assign in_cart = true
+    endif
+  endfor
+  assign form_id = 'product-form-' | append: section.id
+  assign add_label = 'product.add_to_cart' | t
+  assign added_label = 'product.added' | t
+  assign view_cart_label = 'product.view_cart' | t
+  assign adding_label = 'cart.adding' | t
   assign alt_text = 'product.image_alt' | t: title: product.title
   assign gallery_ratio = product.featured_media.aspect_ratio | default: 0.8
   assign encoded_title = product.title | url_encode
@@ -178,7 +190,7 @@
         {%- endif -%}
 
         {%- if can_buy -%}
-          {%- form 'product', product, class: 'product__form', data-product-form: '' -%}
+          {%- form 'product', product, id: form_id, class: 'product__form', data-product-form: '' -%}
             {%- if product.has_only_default_variant -%}
               <input type="hidden" name="id" value="{{ variant.id }}">
             {%- else -%}
@@ -189,10 +201,23 @@
                 {%- endfor -%}
               </select>
             {%- endif -%}
-            <button type="submit" class="button button--full" name="add" data-add-to-cart data-adding-label="{{ 'cart.adding' | t }}">
-              {{ 'product.add_to_cart' | t }}
+            <button
+              type="submit"
+              class="button button--full button--buy"
+              name="add"
+              data-add-to-cart
+              data-idle-label="{{ add_label }}"
+              data-adding-label="{{ adding_label }}"
+              data-added-label="{{ added_label }}"
+              data-in-cart-label="{{ view_cart_label }}"
+              {% if in_cart %}data-in-cart{% endif %}
+            >
+              <span data-add-label>{% if in_cart %}{{ view_cart_label }}{% else %}{{ add_label }}{% endif %}</span>
             </button>
             <p class="product__error small" role="alert" data-form-error data-fallback="{{ 'cart.error' | t | escape }}" hidden></p>
+            {%- if section.settings.show_dynamic_checkout -%}
+              {{ form | payment_button }}
+            {%- endif -%}
           {%- endform -%}
 
           <ul class="product__trust small" role="list">
@@ -266,12 +291,41 @@
   </div>
 </section>
 
+{%- if can_buy -%}
+  <div class="sticky-atc" data-sticky-atc hidden>
+    <div class="sticky-atc__info">
+      <p class="sticky-atc__title">{{ product.title }}</p>
+      <p class="sticky-atc__price">{{ product.price | money }}</p>
+    </div>
+    <button
+      type="submit"
+      form="{{ form_id }}"
+      class="button button--buy"
+      data-add-to-cart
+      data-idle-label="{{ add_label }}"
+      data-adding-label="{{ adding_label }}"
+      data-added-label="{{ added_label }}"
+      data-in-cart-label="{{ view_cart_label }}"
+      {% if in_cart %}data-in-cart{% endif %}
+    >
+      <span data-add-label>{% if in_cart %}{{ view_cart_label }}{% else %}{{ add_label }}{% endif %}</span>
+    </button>
+  </div>
+{%- endif -%}
+
 {% render 'json-ld-product', product: product, variant: variant %}
 
 {% schema %}
 {
   "name": "Productpagina",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_dynamic_checkout",
+      "label": "Snelle afrekenknop tonen (Shop Pay, Apple Pay, Google Pay)",
+      "info": "Verschijnt onder 'In winkelmand' zodra deze betaalmethoden in Shopify actief zijn. Handig bij unieke werken: de koper rekent in één stap af.",
+      "default": true
+    },
     { "type": "richtext", "id": "shipping_text", "label": "Tekst 'Verzending & retour'", "info": "Leeg laten voor de standaardtekst." },
     { "type": "richtext", "id": "care_text", "label": "Tekst 'Verzorging'", "info": "Leeg laten voor de standaardtekst." }
   ]

@@ -18,6 +18,7 @@
         {%- endif -%}
       </a>
       <div class="cart-item__info">
+        <p class="cart-item__unique eyebrow">{{ 'cart.unique_note' | t }}</p>
         <a class="cart-item__title" href="{{ item.url }}">{{ item.product.title }}</a>
         {%- if medium != blank or size_artwork != blank -%}
           <p class="cart-item__meta small">

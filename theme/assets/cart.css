@@ -79,3 +79,33 @@
 @media (prefers-reduced-motion: reduce) {
   .cart-drawer[open], .popup[open] { animation: none; }
 }
+
+
+/* ---------- Conversie-extra's in de winkelmand ---------- */
+.cart-item__unique { margin: 0 0 2px; font-size: 11px; }
+.cart-summary__shipping { display: flex; align-items: center; gap: 10px; margin: 0; font-weight: 500; max-width: none; }
+.cart-summary__shipping .icon { width: 20px; height: 20px; }
+.cart-summary__form { display: grid; gap: 10px; }
+.cart-summary__form .button .icon { width: 18px; height: 18px; }
+.cart-summary__payments { display: flex; flex-wrap: wrap; gap: 6px; }
+.cart-summary__help { padding-top: 14px; border-top: 1px solid var(--color-stone); max-width: none; }
+.cart-summary__help-title { margin: 0; font-weight: 500; }
+.cart-summary__help p { max-width: none; }
+.cart-summary__help-links { display: flex; gap: 16px; margin-top: 6px; }
+.cart-empty__title { margin: 0; }
+.cart-recs { padding: 8px 24px 32px; }
+.cart-page .cart-recs { padding: clamp(48px, 7vw, 96px) 0 0; }
+.cart-recs__heading { margin-bottom: 20px; }
+.cart-recs__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 14px; }
+@media (min-width: 900px) { .cart-page .cart-recs__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; } }
+.cart-drawer .product-card__title { font-size: 19px; }
+.cart-drawer__body { overflow-y: auto; }
+
+/* Compacte drawer: de lange versie (vertrouwen, hulp, toelichting) staat op de cartpagina */
+.cart-drawer .cart-summary { gap: 10px; }
+.cart-drawer .cart-summary__note,
+.cart-drawer .cart-summary__trust,
+.cart-drawer .cart-summary__help { display: none; }
+.cart-drawer .cart-summary__shipping { font-size: 14px; }
+.cart-drawer__footer { padding: 16px 24px 20px; }
+.cart-page .cart-empty { padding-inline: 0; }
