@@ -4,12 +4,6 @@
       "type": "main-product",
       "settings": {}
     },
-    "scale": {
-      "type": "scale-preview",
-      "settings": {
-        "show": true
-      }
-    },
     "related": {
       "type": "related-products",
       "settings": {}
@@ -19,5 +13,5 @@
       "settings": {}
     }
   },
-  "order": ["main", "scale", "related", "maker"]
+  "order": ["main", "related", "maker"]
 }

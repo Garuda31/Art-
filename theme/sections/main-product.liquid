@@ -38,7 +38,12 @@
   assign view_cart_label = 'product.view_cart' | t
   assign adding_label = 'cart.adding' | t
   assign alt_text = 'product.image_alt' | t: title: product.title
-  assign gallery_ratio = product.featured_media.aspect_ratio | default: 0.8
+  assign gallery_ratio = product.featured_media.aspect_ratio | default: 0.85
+  if gallery_ratio < 0.85
+    assign gallery_ratio = 0.85
+  elsif gallery_ratio > 1.6
+    assign gallery_ratio = 1.6
+  endif
   assign encoded_title = product.title | url_encode
   assign contact_url = routes.root_url | append: 'pages/contact?subject=' | append: encoded_title
   assign ask_label = 'product.ask_question' | t

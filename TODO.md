@@ -15,8 +15,10 @@ Alles wat in `brand.md` tussen [haken] staat, is hier verzameld. Zoek in het the
 
 ## Per werk (Collectie I)
 - [ ] **Jaar** van elk werk (metafield `artwork.year`). In de CSV is dit leeg.
-- [ ] **Echte maten** werk en met lijst. In de CSV staan placeholders zoals `[30 × 40] cm`. Vervang ze door `30 × 40 cm` om het haakje-teken weg te halen.
-- [ ] **Oriëntatie** (staand / liggend / vierkant) per werk. In de CSV is dit leeg. Nodig voor het filter en de schaalindicatie bij liggende werken.
+- [x] Maat van het werk: **29,5 × 21 cm** (liggend) ingevuld voor Wervelingen, Mozaïek, Zonnegeel, Regenboogstroom, Stilleven op geel en Drie gezichten. Controleer of dat voor al deze zes klopt.
+- [ ] **Maat van het werk** voor Tuin in bloei, de vaas en de nog niet gefotografeerde werken (Avondbos, Kustlijn, Huis in het groen). In de CSV staan placeholders zoals `[30 × 40] cm`.
+- [ ] **Lijst door de koper laten kiezen (later):** nu staat bij de zes liggende werken de lijst van de foto (42 × 32 cm, zwart met passe-partout). Wil je lijsten als keuze aanbieden, dan wordt dat een productoptie (varianten met een meerprijs). Dat verandert de prijsberekening en de winkelmand, dus eerst overleggen.
+- [ ] **Oriëntatie** (staand / liggend / vierkant) per werk. In de CSV is dit leeg. Nodig voor het filter op oriëntatie.
 - [ ] **Lijst** controleren (nr. 8 en 9 staan als "Ongelijst" uit brand.md; dat lijkt "zonder lijst" te betekenen).
 - [ ] **Gewicht en verpakkingsmaten** per werk (voor verzendtarieven)
 - [ ] **Prijzen controleren** (CSV: €245 en €210 volgens brand.md)

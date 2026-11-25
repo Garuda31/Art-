@@ -76,7 +76,7 @@ Ga naar **Instellingen → Aangepaste gegevens → Producten → Definitie toevo
 Let op:
 - Gebruik exact de sleutels hierboven. De namen in de CSV-kolomkoppen (Jaar, Techniek, …) mogen anders zijn, maar `product.metafields.artwork.…` moet kloppen.
 - Zet bij **Maat werk**, **Maat met lijst** en **Oriëntatie** de optie *Gebruiken als filter* aan als je wilt filteren op formaat of oriëntatie (zie stap 5).
-- De **schaalindicatie** ("Zo hangt het aan de muur") leest `size_framed`, met `size_artwork` als terugval. Schrijf de maat als `breedte × hoogte cm`. Met `orientation` (staand of liggend) kan het thema de volgorde zo nodig omdraaien.
+- Schrijf maten als `breedte × hoogte cm`. De sectie "Zo hangt het aan de muur" (schaalindicatie met bank-silhouet) staat niet meer op de productpagina, omdat de tweede foto al een interieur toont. Het bestand `theme/sections/scale-preview.liquid` blijft in het thema, voor het geval je hem later terug wilt zetten in `templates/product.json`.
 
 ## 3. Producten invoeren
 
@@ -176,7 +176,6 @@ Voorwaarden en privacy maak je via de beleidspagina's (stap 6) of als gewone pag
 ## 10. Snelle controle na het uploaden
 
 - Elk werk toont de juiste metafields, het label "Uniek origineel — 1 beschikbaar", of "Verkocht" bij voorraad 0.
-- De schaalindicatie verschijnt zodra een maat als `breedte × hoogte cm` is ingevuld.
 - Toevoegen aan de winkelmand opent de drawer, ook op je telefoon.
 - Je kunt als gast afrekenen en de betaalmethoden zijn zichtbaar.
 - Test op 375, 768, 1280 en 1600 px.
